@@ -1,15 +1,17 @@
-import 'package:crib_hunter/Screens/guestHomePage.dart';
-import 'package:crib_hunter/Screens/hostHomePage.dart';
-import 'package:crib_hunter/Screens/viewProfilePage.dart';
+import 'package:antoh/Screens/guestHomePage.dart';
+import 'package:antoh/Screens/hostHomePage.dart';
+import 'package:antoh/Screens/viewProfilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import '../Models/appConstants.dart';
+import 'guestHomePage.dart';
 import 'loginPage.dart';
 import 'personalInfoPage.dart';
 
-import 'package:crib_hunter/Models/appConstants.dart';
+import 'package:antoh/Models/appConstants.dart';
 
 class AccountPage extends StatefulWidget {
-  AccountPage({Key key}) : super(key: key);
+  AccountPage({Key ?key}) : super(key: key);
 
   @override
   _AccountPageState createState() => _AccountPageState();
@@ -23,8 +25,8 @@ class _AccountPageState extends State<AccountPage> {
   }
 
   void _changeHosting() {
-    if (AppConstants.currentUser.isCurrentHosting) {
-      AppConstants.currentUser.isCurrentHosting = false;
+    if (AppConstants.currentUser!.isCurrentHosting!) {
+      AppConstants.currentUser!.isCurrentHosting = false;
       Navigator.pushNamed(
         context,
         GuestHomePage.routeName,
