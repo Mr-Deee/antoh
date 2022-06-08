@@ -79,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                           fontSize: 18.0,
                         ),
                         validator: (text) {
-                          if (!text.contains('@')) {
+                          if (!text!.contains('@')) {
                             return 'Please enter a valid email';
                           }
                           return null;
@@ -98,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         obscureText: true,
                         validator: (text) {
-                          if (text.length < 6) {
+                          if (text!.length< 6) {
                             return 'Password must be at least 8 characters';
                           }
                           return null;
