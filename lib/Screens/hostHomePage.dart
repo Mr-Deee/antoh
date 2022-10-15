@@ -10,7 +10,7 @@ import 'inboxPage.dart';
 class HostHomePage extends StatefulWidget {
   static final String routeName = '/hostHomePageRoute';
 
-  HostHomePage({Key key}) : super(key: key);
+  HostHomePage({Key? key}) : super(key: key);
 
   @override
   _HostHomePageState createState() => _HostHomePageState();
