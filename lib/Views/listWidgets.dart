@@ -10,19 +10,19 @@ import 'package:flutter_rating/flutter_rating.dart';
 class ReviewListTile extends StatefulWidget {
   final Review? review;
 
-  ReviewListTile({this.review, Key key}) : super(key: key);
+  ReviewListTile({this.review, Key? key}) : super(key: key);
 
   @override
   _ReviewListTileState createState() => _ReviewListTileState();
 }
 
 class _ReviewListTileState extends State<ReviewListTile> {
-  Review _review;
+  Review? _review;
 
   @override
   void initState() {
     this._review = widget.review;
-    this._review.contact.getImageFromStorage().whenComplete(() {
+    this._review!.contact?.getImageFromStorage().whenComplete(() {
       setState(() {});
     });
     super.initState();
@@ -40,18 +40,18 @@ class _ReviewListTileState extends State<ReviewListTile> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => ViewProfilePage(
-                      contact: _review.contact,
+                      contact: _review?.contact,
                     ),
                   ),
                 );
               },
               child: Container(
-                child: (_review.contact.displayImage == null)
+                child: (_review?.contact?.displayImage == null)
                     ? Container(
                         width: MediaQuery.of(context).size.width / 7.5,
                       )
                     : CircleAvatar(
-                        backgroundImage: _review.contact.displayImage,
+                        backgroundImage: _review?.contact?.displayImage,
                         radius: MediaQuery.of(context).size.width / 15,
                       ),
               ),
@@ -59,7 +59,7 @@ class _ReviewListTileState extends State<ReviewListTile> {
             Padding(
               padding: const EdgeInsets.only(left: 15.0, right: 15),
               child: AutoSizeText(
-                _review.contact.firstName,
+                _review!.contact?.firstName,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 19.0,
@@ -72,14 +72,14 @@ class _ReviewListTileState extends State<ReviewListTile> {
               color: AppConstants.selectedIconColor,
               borderColor: Colors.grey,
               onRatingChanged: null,
-              rating: _review.rating,
+              rating: _review?.rating,
             ),
           ],
         ),
         Padding(
           padding: const EdgeInsets.only(top: 10.0, bottom: 15.0),
           child: AutoSizeText(
-            _review.text,
+            _review?.text,
             style: TextStyle(
               fontSize: 16.0,
             ),
@@ -91,20 +91,20 @@ class _ReviewListTileState extends State<ReviewListTile> {
 }
 
 class ConversationListTile extends StatefulWidget {
-  final Conversation conversation;
+  final Conversation ?conversation;
 
-  ConversationListTile({this.conversation, Key key}) : super(key: key);
+  ConversationListTile({this.conversation, Key ?key}) : super(key: key);
 
   @override
   _ConversationListTileState createState() => _ConversationListTileState();
 }
 
 class _ConversationListTileState extends State<ConversationListTile> {
-  Conversation _conversation;
+  Conversation ?_conversation;
 
   @override
   void initState() {
-    this._conversation = widget.conversation;
+    this._conversation = widget.conversation!;
     super.initState();
   }
 
@@ -117,29 +117,29 @@ class _ConversationListTileState extends State<ConversationListTile> {
             context,
             MaterialPageRoute(
               builder: (context) =>
-                  ViewProfilePage(contact: _conversation.otherContact),
+                  ViewProfilePage(contact: _conversation!.otherContact),
             ),
           );
         },
         child: CircleAvatar(
-          backgroundImage: _conversation.otherContact.displayImage,
+          backgroundImage: _conversation!.otherContact?.displayImage,
           radius: MediaQuery.of(context).size.width / 14.0,
         ),
       ),
       title: Text(
-        _conversation.otherContact.getFullName(),
+        _conversation!.otherContact!.getFullName(),
         style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 18.0,
         ),
       ),
       subtitle: AutoSizeText(
-        _conversation.getLastMessageText(),
+        _conversation!.getLastMessageText(),
         minFontSize: 16,
         overflow: TextOverflow.ellipsis,
       ),
       trailing: Text(
-        _conversation.getLastMessageDateTime(),
+        _conversation!.getLastMessageDateTime(),
         style: TextStyle(
           fontSize: 13.0,
         ),
@@ -150,13 +150,13 @@ class _ConversationListTileState extends State<ConversationListTile> {
 }
 
 class MessageListTile extends StatelessWidget {
-  final Message message;
+  final Message ?message;
 
-  MessageListTile({this.message, Key key}) : super(key: key);
+  MessageListTile({this.message, Key ?key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (message.sender.firstName == AppConstants.currentUser.firstName) {
+    if (message?.sender?.firstName == AppConstants.currentUser?.firstName) {
       return Padding(
         padding: const EdgeInsets.fromLTRB(35, 15, 15, 15),
         child: Row(
@@ -179,7 +179,7 @@ class MessageListTile extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 10.0),
                         child: Text(
-                          message.text,
+                          message!.text!,
                           textWidthBasis: TextWidthBasis.parent,
                           style: TextStyle(
                             fontSize: 16.0,
@@ -189,7 +189,7 @@ class MessageListTile extends StatelessWidget {
                       Align(
                         alignment: Alignment.bottomRight,
                         child: Text(
-                          message.getMessageDateTime(),
+                          message!.getMessageDateTime(),
                           style: TextStyle(
                             fontSize: 13.0,
                           ),
@@ -207,12 +207,12 @@ class MessageListTile extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) => ViewProfilePage(
                         contact:
-                            AppConstants.currentUser.createContactFromUser()),
+                            AppConstants.currentUser?.createContactFromUser()),
                   ),
                 );
               },
               child: CircleAvatar(
-                backgroundImage: AppConstants.currentUser.displayImage,
+                backgroundImage: AppConstants.currentUser?.displayImage,
                 radius: MediaQuery.of(context).size.width / 20,
               ),
             ),
@@ -232,12 +232,12 @@ class MessageListTile extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
-                        ViewProfilePage(contact: message.sender),
+                        ViewProfilePage(contact: message!.sender),
                   ),
                 );
               },
               child: CircleAvatar(
-                backgroundImage: message.sender.displayImage,
+                backgroundImage: message?.sender!.displayImage,
                 radius: MediaQuery.of(context).size.width / 20,
               ),
             ),
@@ -257,7 +257,7 @@ class MessageListTile extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 10.0),
                         child: Text(
-                          message.text,
+                          message!.text!,
                           textWidthBasis: TextWidthBasis.parent,
                           style: TextStyle(
                             fontSize: 16.0,
@@ -267,7 +267,7 @@ class MessageListTile extends StatelessWidget {
                       Align(
                         alignment: Alignment.bottomRight,
                         child: Text(
-                          message.getMessageDateTime(),
+                          message!.getMessageDateTime(),
                           style: TextStyle(
                             fontSize: 13.0,
                           ),
@@ -286,16 +286,16 @@ class MessageListTile extends StatelessWidget {
 }
 
 class MyPostingListTile extends StatefulWidget {
-  final Posting posting;
+  final Posting ?posting;
 
-  MyPostingListTile({this.posting, Key key}) : super(key: key);
+  MyPostingListTile({this.posting, Key ?key}) : super(key: key);
 
   @override
   _MyPostingListTileState createState() => _MyPostingListTileState();
 }
 
 class _MyPostingListTileState extends State<MyPostingListTile> {
-  Posting _posting;
+  Posting ?_posting;
 
   @override
   void initState() {
@@ -310,7 +310,7 @@ class _MyPostingListTileState extends State<MyPostingListTile> {
       leading: Padding(
         padding: const EdgeInsets.only(left: 10.0),
         child: AutoSizeText(
-          _posting.name,
+          _posting!.name,
           maxLines: 2,
           minFontSize: 20.0,
           style: TextStyle(
@@ -321,7 +321,7 @@ class _MyPostingListTileState extends State<MyPostingListTile> {
       trailing: AspectRatio(
         aspectRatio: 3 / 2,
         child: Image(
-          image: _posting.displayImages.first,
+          image: _posting!.displayImages!.first,
           fit: BoxFit.fitWidth,
         ),
       ),
