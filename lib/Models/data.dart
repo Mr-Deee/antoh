@@ -40,7 +40,7 @@ class PracticeData {
       4.5,
       DateTime.now(),
     );
-    user1.reviews.add(review);
+    user1.reviews!.add(review);
 
     Conversation? conversation = Conversation();
     conversation.createConversation(user2.createContactFromUser(), []);
@@ -60,7 +60,7 @@ class PracticeData {
     conversation.messages?.add(message1);
     conversation.messages?.add(message2);
 
-    user1.conversations.add(conversation);
+    user1.conversations!.add(conversation);
 
     Posting posting1 = Posting(
       name: "Cool Crib",
@@ -140,11 +140,11 @@ class PracticeData {
     );
     posting1.reviews?.add(postingReview);
 
-    user1.bookings.add(booking1);
-    user1.bookings.add(booking2);
-    user1.myPostings.add(posting1);
-    user2.myPostings.add(posting2);
+    user1.bookings!.add(booking1);
+    user1.bookings!.add(booking2);
+    user1.myPostings!.add(posting1);
+    user2.myPostings!.add(posting2);
 
-    user1.savedPostings.add(posting2);
+    user1.savedPostings!.add(posting2);
   }
 }
