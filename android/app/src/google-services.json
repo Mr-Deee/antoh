@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "281894265639",
+    "project_id": "antoh-31815",
+    "storage_bucket": "antoh-31815.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:281894265639:android:065c726c1d8a4d2d307f02",
+        "android_client_info": {
+          "package_name": "com.example.antoh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "281894265639-mtto74hnv8h4lihs34i2hf3j73fu30nn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.antoh",
+            "certificate_hash": "93dcb0523c0c3980b3af787bdd072b53b9ae5853"
+          }
+        },
+        {
+          "client_id": "281894265639-cps0cnuvpats2mc25v9nik9fduke4vs5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgS9l2LHch2GJvBzuyXu2pCaigmISHbAk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "281894265639-cps0cnuvpats2mc25v9nik9fduke4vs5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
