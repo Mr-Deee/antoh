@@ -1,16 +1,17 @@
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:antoh/Models/messagingObjects.dart';
 import 'package:antoh/Models/postingObjects.dart';
 import 'package:antoh/Models/reviewObjects.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 import 'appConstants.dart';
-import 'messagingObjects.dart';
 
 class Contact {
-  String id;
-  String firstName;
-  String lastName;
-  MemoryImage ?displayImage;
+  String ?id;
+  String ?firstName;
+  String ?lastName;
+  MemoryImage? displayImage;
 
   Contact(
       {this.id = "",
@@ -25,9 +26,9 @@ class Contact {
     this.lastName = snapshot['lastName'] ?? "";
   }
 
-  Future<MemoryImage> getImageFromStorage() async {
+  Future<MemoryImage?> getImageFromStorage() async {
     if (displayImage != null) {
-      return displayImage!;
+      return displayImage;
     }
     final String imagePath = "userImages/${this.id}/profile_pic.";
     final imageData = await FirebaseStorage.instance
@@ -39,7 +40,7 @@ class Contact {
   }
 
   String getFullName() {
-    return this.firstName + " " + this.lastName;
+    return this.firstName !+ " " + this.lastName!;
   }
 
   User createUserFromContact() {
@@ -53,33 +54,33 @@ class Contact {
 }
 
 class User extends Contact {
-  String email;
-  String bio;
-  String city;
-  String country;
-  bool isHost;
-  bool isCurrentHosting;
+  String? email;
+  String ?bio;
+  String ?city;
+  String ?country;
+  bool ?isHost;
+  bool ?isCurrentHosting;
 
-  List<Booking> bookings;
-  List<Review> reviews;
-  List<Conversation> conversations;
-  List<Posting> savedPostings;
-  List<Posting> myPostings;
+  List<Booking>? bookings;
+  List<Review>? reviews;
+  List<Conversation>? conversations;
+  List<Posting> ?savedPostings;
+  List<Posting> ?myPostings;
 
   User(
-      {String id = "",
-      String firstName = "",
-      String lastName = "",
-      MemoryImage? displayImage,
+      {String ?id = "",
+      String ?firstName = "",
+      String ?lastName = "",
+      MemoryImage ?displayImage,
       this.email = "",
       this.bio = "",
       this.city = "",
       this.country = ""})
       : super(
-            id: id,
-            firstName: firstName,
-            lastName: lastName,
-            displayImage: displayImage) {
+            id: id!,
+            firstName: firstName!,
+            lastName: lastName!,
+            displayImage: displayImage!) {
     this.isHost = false;
     this.isCurrentHosting = false;
     this.bookings = [];
@@ -135,39 +136,39 @@ class User extends Contact {
       Booking newBooking = Booking();
       await newBooking.getBookingInfoFromFirestoreFromUser(
           this.createContactFromUser(), snapshot);
-      this.bookings.add(newBooking);
+      this.bookings!.add(newBooking);
     }
   }
 
   void makeNewBooking(Booking booking) {
-    this.bookings.add(booking);
+    this.bookings!.add(booking);
   }
 
-  List<DateTime> getAllBookedDates() {
+  List<DateTime>? getAllBookedDates() {
     List<DateTime> allBookedDates = [];
-    this.myPostings.forEach((posting) {
-      posting.bookings.forEach((booking) {
-        allBookedDates.addAll(booking.dates);
+    this.myPostings?.forEach((posting) {
+      posting.bookings?.forEach((booking) {
+        allBookedDates.addAll(booking.dates!);
       });
     });
   }
 
   void addSavedPosting(Posting posting) {
-    this.savedPostings.add(posting);
+    this.savedPostings!.add(posting);
   }
 
   void removeSavedPosting(Posting posting) {
-    for (int i = 0; i < this.savedPostings.length; i++) {
-      if (this.savedPostings[i].name == posting.name) {
-        this.savedPostings.removeAt(i);
+    for (int i = 0; i < this.savedPostings!.length; i++) {
+      if (this.savedPostings![i].name == posting.name) {
+        this.savedPostings!.removeAt(i);
       }
     }
   }
 
   List<Booking> getPreviousTrips() {
     List<Booking> previousTrips = [];
-    this.bookings.forEach((booking) {
-      if (booking.dates.last.compareTo(DateTime.now()) <= 0) {
+    this.bookings!.forEach((booking) {
+      if (booking.dates!.last.compareTo(DateTime.now()) <= 0) {
         previousTrips.add(booking);
       }
     });
@@ -177,8 +178,8 @@ class User extends Contact {
 
   List<Booking> getUpcomingTrips() {
     List<Booking> upcomingTrips = [];
-    this.bookings.forEach((booking) {
-      if (booking.dates.last.compareTo(DateTime.now()) > 0) {
+    this.bookings!.forEach((booking) {
+      if (booking.dates!.last.compareTo(DateTime.now()) > 0) {
         upcomingTrips.add(booking);
       }
     });
@@ -187,25 +188,25 @@ class User extends Contact {
   }
 
   double getCurrentRating() {
-    if (this.reviews.length == 0) {
+    if (this.reviews!.length == 0) {
       return 4;
     }
     double rating = 0;
-    this.reviews.forEach((review) {
-      rating += review.rating;
+    this.reviews!.forEach((review) {
+      rating += review.rating!;
     });
-    rating /= this.reviews.length;
+    rating /= this.reviews!.length;
     return rating;
   }
 
   void postNewReview(String text, double rating) {
     Review newReview = Review();
     newReview.createReview(
-      AppConstants.currentUser.createContactFromUser(),
+      AppConstants.currentUser!.createContactFromUser(),
       text,
       rating,
       DateTime.now(),
     );
-    this.reviews.add(newReview);
+    this.reviews!.add(newReview);
   }
 }
