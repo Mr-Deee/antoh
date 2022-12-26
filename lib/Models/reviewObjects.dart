@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:antoh//Models/userObjects.dart';
+import 'package:antoh/Models/userObjects.dart';
 
 class Review {
-  Contact contact;
-  String text;
-  double rating;
-  DateTime dateTime;
+  Contact ?contact;
+  String ?text;
+  double ?rating;
+  DateTime? dateTime;
 
   Review();
 
