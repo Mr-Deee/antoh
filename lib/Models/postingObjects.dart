@@ -182,7 +182,7 @@ class Posting {
     }
     double rating = 0;
     this.reviews!.forEach((review) {
-      rating += review.rating;
+      rating += review.rating!;
     });
     rating /= this.reviews!.length;
     return rating;
