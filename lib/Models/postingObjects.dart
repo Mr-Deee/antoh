@@ -88,7 +88,7 @@ class Posting {
 
   Future<List<MemoryImage>> getAllImagesFromStorage() async {
     for (int i = 0; i < this.imageNames!.length; i++) {
-      final String imagePath = "postingImages/${this.id}/${this.imageNames[i]}";
+      final String imagePath = "postingImages/${this.id}/${this.imageNames![i]}";
       final imageData = await FirebaseStorage.instance
           .ref()
           .child(imagePath)
@@ -171,7 +171,7 @@ class Posting {
   List<DateTime> getAllBookedDates() {
     List<DateTime> dates = [];
     this.bookings!.forEach((booking) {
-      dates.addAll(booking.dates);
+      dates.addAll(booking.dates!);
     });
     return dates;
   }
@@ -201,10 +201,10 @@ class Posting {
 }
 
 class Booking {
-  String id;
-  Posting posting;
-  Contact contact;
-  List<DateTime> dates;
+  String ?id;
+  Posting ?posting;
+  Contact ?contact;
+  List<DateTime>? dates;
 
   Booking();
 
@@ -212,22 +212,22 @@ class Booking {
     this.posting = posting;
     this.contact = contact;
     this.dates = dates;
-    this.dates.sort();
+    this.dates!.sort();
   }
 
   Future<void> getBookingInfoFromFirestoreFromUser(
       Contact contact, DocumentSnapshot snapshot) async {
     this.contact = contact;
-    this.dates = List<String>.from(snapshot['dates']) ?? [];
+    this.dates = (List<String>.from(snapshot['dates']) ?? []).cast<DateTime>();
     String postingID = snapshot['postingID'] ?? "";
     this.posting = Posting(id: postingID);
-    await this.posting.getPostingInfoFromFirestore();
+    await this.posting?.getPostingInfoFromFirestore();
   }
 
   Future<void> getBookingInfoFromFirestoreFromPosting(
       Posting posting, DocumentSnapshot snapshot) async {
     this.posting = posting;
-    this.dates = List<String>.from(snapshot['dates']) ?? [];
+    this.dates = (List<String>.from(snapshot['dates']) ?? []).cast<DateTime>();
     String contactID = snapshot['userID'] ?? "";
     String fullName = snapshot['name'] ?? "";
     _loadContactInfo(contactID, fullName);
@@ -242,12 +242,12 @@ class Booking {
   }
 
   String getFirstDate() {
-    String firstDateTime = dates.first.toIso8601String();
+    String firstDateTime = dates!.first.toIso8601String();
     return firstDateTime.substring(0, 10);
   }
 
   String getLastDate() {
-    String lastDateTime = dates.last.toIso8601String();
+    String lastDateTime = dates!.last.toIso8601String();
     return lastDateTime.substring(0, 10);
   }
 }
