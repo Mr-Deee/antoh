@@ -1,31 +1,31 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:crib_hunter/Models/appConstants.dart';
-import 'package:crib_hunter/Models/reviewObjects.dart';
-import 'package:crib_hunter/Models/userObjects.dart';
+import 'package:antoh/Models/appConstants.dart';
+import 'package:antoh/Models/reviewObjects.dart';
+import 'package:antoh/Models/userObjects.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 class Posting {
-  String id;
-  String name;
-  String type;
-  String price;
-  String description;
-  String address;
-  String city;
-  String country;
-  double rating;
+  String ?id;
+  String ?name;
+  String ?type;
+  String ?price;
+  String ?description;
+  String ?address;
+  String ?city;
+  String ?country;
+  double ?rating;
 
-  Contact host;
+  Contact? host;
 
-  List<String> imageNames;
-  List<MemoryImage> displayImages;
-  List<String> amenities;
-  List<Booking> bookings;
-  List<Review> reviews;
+  List<String> ?imageNames;
+  List<MemoryImage>? displayImages;
+  List<String> ?amenities;
+  List<Booking> ?bookings;
+  List<Review> ?reviews;
 
-  Map<String, int> beds;
-  Map<String, int> bathrooms;
+  Map<String, int>? beds;
+  Map<String, int> ?bathrooms;
 
   Posting(
       {this.id = "",
@@ -73,51 +73,51 @@ class Posting {
   }
 
   Future<MemoryImage> getFirstImageFromStorage() async {
-    if (this.displayImages.isNotEmpty) {
-      return this.displayImages.first;
+    if (this.displayImages!.isNotEmpty) {
+      return this.displayImages!.first;
     }
     final String imagePath =
-        "postingImages/${this.id}/${this.imageNames.first}";
+        "postingImages/${this.id}/${this.imageNames!.first}";
     final imageData = await FirebaseStorage.instance
         .ref()
         .child(imagePath)
         .getData(1024 * 1024);
-    this.displayImages.add(MemoryImage(imageData));
-    return this.displayImages.first;
+    this.displayImages!.add(MemoryImage(imageData));
+    return this.displayImages!.first;
   }
 
   Future<List<MemoryImage>> getAllImagesFromStorage() async {
-    for (int i = 0; i < this.imageNames.length; i++) {
+    for (int i = 0; i < this.imageNames!.length; i++) {
       final String imagePath = "postingImages/${this.id}/${this.imageNames[i]}";
       final imageData = await FirebaseStorage.instance
           .ref()
           .child(imagePath)
           .getData(1024 * 1024);
-      this.displayImages.add(MemoryImage(imageData));
+      this.displayImages!.add(MemoryImage(imageData));
     }
 
-    return this.displayImages;
+    return this.displayImages!;
   }
 
   Future<void> getHostFromFirestore() async {
-    await this.host.getContactInfoFromFirestore();
+    await this.host!.getContactInfoFromFirestore();
   }
 
   int getNumGuests() {
     int numGuests = 0;
-    numGuests += this.beds['small'];
-    numGuests += this.beds['medium'] * 2;
-    numGuests += this.beds['large'] * 2;
+    numGuests += this.beds!['small']!;
+    numGuests += (this.beds!['medium']! * 2)!;
+    numGuests += (this.beds!['large'] !* 2)!;
 
     return numGuests;
   }
 
   String getFullAddress() {
-    return this.address + ", " + this.city + ", " + this.country;
+    return this.address! + ", " + this.city! + ", " + this.country!;
   }
 
   String getAmenities() {
-    if (this.amenities.isEmpty) {
+    if (this.amenities!.isEmpty) {
       return "";
     }
     String amenitiesString = this.amenities.toString();
@@ -126,25 +126,25 @@ class Posting {
 
   String getBedroomText() {
     String text = "";
-    if (this.beds["small"] != 0) {
-      text += this.beds["small"].toString() + " single/twin ";
+    if (this.beds!["small"] != 0) {
+      text += this.beds!["small"].toString() + " single/twin ";
     }
-    if (this.beds["medium"] != 0) {
-      text += this.beds["medium"].toString() + " double ";
+    if (this.beds!["medium"] != 0) {
+      text += this.beds!["medium"].toString() + " double ";
     }
-    if (this.beds["large"] != 0) {
-      text += this.beds["large"].toString() + " queen/king ";
+    if (this.beds!["large"] != 0) {
+      text += this.beds!["large"].toString() + " queen/king ";
     }
     return text;
   }
 
   String getBathroomText() {
     String text = "";
-    if (this.bathrooms["full"] != 0) {
-      text += this.bathrooms["full"].toString() + " full ";
+    if (this.bathrooms!["full"] != 0) {
+      text += this.bathrooms!["full"].toString() + " full ";
     }
-    if (this.bathrooms["half"] != 0) {
-      text += this.bathrooms["half"].toString() + " half ";
+    if (this.bathrooms!["half"] != 0) {
+      text += this.bathrooms!["half"].toString() + " half ";
     }
     return text;
   }
@@ -157,46 +157,46 @@ class Posting {
     for (var snapshot in snapshots.documents) {
       Booking newBooking = Booking();
       await newBooking.getBookingInfoFromFirestoreFromPosting(this, snapshot);
-      this.bookings.add(newBooking);
+      this.bookings!.add(newBooking);
     }
   }
 
   void makeNewBooking(List<DateTime> dates) {
     Booking newBooking = Booking();
     newBooking.createBooking(
-        this, AppConstants.currentUser.createContactFromUser(), dates);
-    this.bookings.add(newBooking);
+        this, AppConstants.currentUser!.createContactFromUser(), dates);
+    this.bookings!.add(newBooking);
   }
 
   List<DateTime> getAllBookedDates() {
     List<DateTime> dates = [];
-    this.bookings.forEach((booking) {
+    this.bookings!.forEach((booking) {
       dates.addAll(booking.dates);
     });
     return dates;
   }
 
   double getCurrentRating() {
-    if (this.reviews.length == 0) {
+    if (this.reviews!.length == 0) {
       return 4;
     }
     double rating = 0;
-    this.reviews.forEach((review) {
+    this.reviews!.forEach((review) {
       rating += review.rating;
     });
-    rating /= this.reviews.length;
+    rating /= this.reviews!.length;
     return rating;
   }
 
   void postNewReview(String text, double rating) {
     Review newReview = Review();
     newReview.createReview(
-      AppConstants.currentUser.createContactFromUser(),
+      AppConstants.currentUser!.createContactFromUser(),
       text,
       rating,
       DateTime.now(),
     );
-    this.reviews.add(newReview);
+    this.reviews!.add(newReview);
   }
 }
 

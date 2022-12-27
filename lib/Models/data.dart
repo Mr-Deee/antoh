@@ -57,8 +57,8 @@ class PracticeData {
       "Hey it's going well, how have you been?",
       DateTime.now(),
     );
-    conversation.messages.add(message1);
-    conversation.messages.add(message2);
+    conversation.messages?.add(message1);
+    conversation.messages?.add(message2);
 
     user1.conversations.add(conversation);
 
@@ -128,8 +128,8 @@ class PracticeData {
         DateTime(2020, 05, 18),
       ],
     );
-    posting2.bookings.add(booking1);
-    posting2.bookings.add(booking2);
+    posting2.bookings?.add(booking1);
+    posting2.bookings?.add(booking2);
 
     Review postingReview = Review();
     postingReview.createReview(
@@ -138,7 +138,7 @@ class PracticeData {
       3.5,
       DateTime(2020, 08, 13),
     );
-    posting1.reviews.add(postingReview);
+    posting1.reviews?.add(postingReview);
 
     user1.bookings.add(booking1);
     user1.bookings.add(booking2);
