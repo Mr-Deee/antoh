@@ -1,4 +1,5 @@
-import 'package:crib_hunter/Models/userObjects.dart';
+import 'package:antoh/Models/userObjects.dart';
+import 'package:antoh/Models/userObjects.dart';
 import 'package:flutter/material.dart';
 
 class AppConstants {
@@ -9,7 +10,7 @@ class AppConstants {
   static final Color selectedIconColor = Colors.red;
   static final Color nonSelectedIconColor = Colors.black87;
 
-  static User currentUser;
+  static User? currentUser;
 
   static final Map<int, String> monthDict = {
     1: "January",

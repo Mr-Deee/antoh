@@ -1,5 +1,6 @@
 
 import 'package:antoh/Models/postingObjects.dart';
+import 'package:antoh/Models/reviewObjects.dart';
 import 'package:flutter/material.dart';
 
 import 'appConstants.dart';
@@ -26,7 +27,7 @@ class Contact {
 
   Future<MemoryImage> getImageFromStorage() async {
     if (displayImage != null) {
-      return displayImage;
+      return displayImage!;
     }
     final String imagePath = "userImages/${this.id}/profile_pic.";
     final imageData = await FirebaseStorage.instance

@@ -42,7 +42,7 @@ class PracticeData {
     );
     user1.reviews.add(review);
 
-    Conversation conversation = Conversation();
+    Conversation? conversation = Conversation();
     conversation.createConversation(user2.createContactFromUser(), []);
 
     Message message1 = Message();

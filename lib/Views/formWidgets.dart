@@ -1,4 +1,4 @@
-import 'package:crib_hunter/Models/appConstants.dart';
+import 'package:antoh/Models/appConstants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating/flutter_rating.dart';
 

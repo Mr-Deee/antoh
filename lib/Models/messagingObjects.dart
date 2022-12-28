@@ -1,13 +1,12 @@
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:antoh/Models/appConstants.dart';
 import 'package:antoh/Models/userObjects.dart';
 
-import 'appConstants.dart';
-
 class Conversation {
-  String id;
-  Contact otherContact;
-  List<Message> messages;
-  Message lastMessage;
+  String ?id;
+  Contact ?otherContact;
+  List<Message>? messages;
+  Message ?lastMessage;
 
   Conversation() {
     messages = [];
@@ -29,13 +28,13 @@ class Conversation {
         snapshot['lastMessageDateTime'] ?? Timestamp.now();
     DateTime lastMessageDateTime = lastMessageTimestamp.toDate();
     this.lastMessage = Message();
-    this.lastMessage.dateTime = lastMessageDateTime;
-    this.lastMessage.text = lastMessageText;
+    this.lastMessage!.dateTime = lastMessageDateTime;
+    this.lastMessage!.text = lastMessageText;
 
     Map<String, String> userInfo =
         Map<String, String>.from(snapshot['userInfo']);
     userInfo.forEach((id, name) {
-      if (id != AppConstants.currentUser.id) {
+      if (id != AppConstants.currentUser!.id) {
         this.otherContact = Contact(
           id: id,
           firstName: name.split(" ")[0],
@@ -46,26 +45,26 @@ class Conversation {
   }
 
   String getLastMessageText() {
-    if (messages.isEmpty) {
+    if (messages!.isEmpty) {
       return "";
     } else {
-      return messages.last.text;
+      return messages!.last.text!;
     }
   }
 
   String getLastMessageDateTime() {
-    if (messages.isEmpty) {
+    if (messages!.isEmpty) {
       return "";
     } else {
-      return messages.last.getMessageDateTime();
+      return messages!.last.getMessageDateTime();
     }
   }
 }
 
 class Message {
-  Contact sender;
-  String text;
-  DateTime dateTime;
+  Contact? sender;
+  String ?text;
+  DateTime? dateTime;
 
   Message();
 
@@ -86,7 +85,7 @@ class Message {
   String getMessageDateTime() {
     final DateTime now = DateTime.now();
     final int today = now.day;
-    if (this.dateTime.day == today) {
+    if (this.dateTime!.day == today) {
       return _getTime();
     } else {
       return _getDate();
@@ -94,7 +93,7 @@ class Message {
   }
 
   String _getTime() {
-    String time = dateTime.toIso8601String().substring(11, 16);
+    String time = dateTime!.toIso8601String().substring(11, 16);
     String hours = time.substring(0, 2);
     int hoursInt = int.parse(hours);
     if (hoursInt > 12) {
@@ -106,7 +105,7 @@ class Message {
   }
 
   String _getDate() {
-    String date = dateTime.toIso8601String().substring(5, 10);
+    String date = dateTime!.toIso8601String().substring(5, 10);
     String month = date.substring(0, 2);
     int monthInt = int.parse(month);
     String? monthName = AppConstants.monthDict[monthInt];
