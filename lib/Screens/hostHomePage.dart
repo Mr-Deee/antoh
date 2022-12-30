@@ -1,8 +1,8 @@
-import 'package:crib_hunter/Screens/bookingsPage.dart';
-import 'package:crib_hunter/Screens/myPostingsPage.dart';
+import 'package:antoh/Screens/bookingsPage.dart';
+import 'package:antoh/Screens/myPostingsPage.dart';
 import 'package:flutter/material.dart';
-import 'package:crib_hunter/Views/textWidgets.dart';
-import 'package:crib_hunter/Models/appConstants.dart';
+import 'package:antoh/Views/textWidgets.dart';
+import 'package:antoh/Models/appConstants.dart';
 
 import 'accountPage.dart';
 import 'inboxPage.dart';
