@@ -47,7 +47,7 @@ class _GuestHomePageState extends State<GuestHomePage> {
         iconData,
         color: AppConstants.selectedIconColor,
       ),
-      title: Text(
+      label: Text(
         text,
         style: TextStyle(
           color: _selectedIndex == index
