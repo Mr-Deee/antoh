@@ -1,11 +1,11 @@
-import 'package:crib_hunter/Models/postingObjects.dart';
-import 'package:crib_hunter/Screens/viewPostingPage.dart';
-import 'package:crib_hunter/Views/gridWidgets.dart';
+import 'package:antoh/Models/postingObjects.dart';
+import 'package:antoh/Screens/viewPostingPage.dart';
+import 'package:antoh/Views/gridWidgets.dart';
 import 'package:flutter/material.dart';
-import 'package:crib_hunter/Models/appConstants.dart';
+import 'package:antoh/Models/appConstants.dart';
 
 class TripsPage extends StatefulWidget {
-  TripsPage({Key key}) : super(key: key);
+  TripsPage({Key ?key}) : super(key: key);
 
   @override
   _TripsPageState createState() => _TripsPageState();
@@ -36,12 +36,12 @@ class _TripsPageState extends State<TripsPage> {
                 height: MediaQuery.of(context).size.height / 3,
                 width: double.infinity,
                 child: ListView.builder(
-                  itemCount: AppConstants.currentUser.getUpcomingTrips().length,
+                  itemCount: AppConstants.currentUser?.getUpcomingTrips().length,
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     Booking currentBooking =
-                        AppConstants.currentUser.getUpcomingTrips()[index];
+                        AppConstants.currentUser!.getUpcomingTrips()[index];
                     return Padding(
                       padding: const EdgeInsets.only(right: 15.0),
                       child: Container(
@@ -81,12 +81,12 @@ class _TripsPageState extends State<TripsPage> {
                 height: MediaQuery.of(context).size.height / 3,
                 width: double.infinity,
                 child: ListView.builder(
-                  itemCount: AppConstants.currentUser.getPreviousTrips().length,
+                  itemCount: AppConstants.currentUser?.getPreviousTrips().length,
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     Booking currentBooking =
-                        AppConstants.currentUser.getPreviousTrips()[index];
+                        AppConstants.currentUser!.getPreviousTrips()[index];
                     return Padding(
                       padding: const EdgeInsets.only(right: 14.0),
                       child: Container(
