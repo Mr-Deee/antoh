@@ -32,7 +32,7 @@ class _AccountPageState extends State<AccountPage> {
         GuestHomePage.routeName,
       );
     } else {
-      AppConstants.currentUser.isCurrentHosting = true;
+      AppConstants.currentUser!.isCurrentHosting = true;
       Navigator.pushNamed(
         context,
         HostHomePage.routeName,
@@ -42,7 +42,7 @@ class _AccountPageState extends State<AccountPage> {
 
   @override
   void initState() {
-    if (AppConstants.currentUser.isCurrentHosting) {
+    if (AppConstants.currentUser!.isCurrentHosting!) {
       _hostingTitle = 'To Guest Dashboard';
     } else {
       _hostingTitle = 'To Host Dashboard';
@@ -71,7 +71,7 @@ class _AccountPageState extends State<AccountPage> {
                       MaterialPageRoute(
                         builder: (context) => ViewProfilePage(
                           contact:
-                              AppConstants.currentUser.createContactFromUser(),
+                              AppConstants.currentUser!.createContactFromUser(),
                         ),
                       ),
                     );
@@ -80,7 +80,7 @@ class _AccountPageState extends State<AccountPage> {
                     backgroundColor: Colors.black,
                     radius: MediaQuery.of(context).size.width / 9.5,
                     child: CircleAvatar(
-                      backgroundImage: AppConstants.currentUser.displayImage,
+                      backgroundImage: AppConstants.currentUser!.displayImage,
                       radius: MediaQuery.of(context).size.width / 10,
                     ),
                   ),
@@ -91,14 +91,14 @@ class _AccountPageState extends State<AccountPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       AutoSizeText(
-                        AppConstants.currentUser.getFullName(),
+                        AppConstants.currentUser?.getFullName(),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),
                       ),
                       AutoSizeText(
-                        AppConstants.currentUser.email,
+                        AppConstants.currentUser?.email!,
                         style: TextStyle(
                           fontSize: 15,
                         ),
@@ -147,10 +147,10 @@ class _AccountPageState extends State<AccountPage> {
 }
 
 class ProfilePageListTile extends StatelessWidget {
-  final String text;
-  final IconData iconData;
+  final String? text;
+  final IconData? iconData;
 
-  ProfilePageListTile({Key key, this.text, this.iconData}) : super(key: key);
+  ProfilePageListTile({Key ?key, this.text, this.iconData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +158,7 @@ class ProfilePageListTile extends StatelessWidget {
     return ListTile(
       contentPadding: EdgeInsets.all(0.0),
       leading: Text(
-        this.text,
+        text!,
         style: TextStyle(
           fontSize: 20.0,
           fontWeight: FontWeight.normal,
