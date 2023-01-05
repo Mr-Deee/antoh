@@ -1,21 +1,23 @@
-import 'package:crib_hunter/Models/postingObjects.dart';
-import 'package:crib_hunter/Views/calendarWidgets.dart';
-import 'package:crib_hunter/Views/textWidgets.dart';
+import 'package:antoh/Models/postingObjects.dart';
+import 'package:antoh/Views/calendarWidgets.dart';
+import 'package:antoh/Views/textWidgets.dart';
 import 'package:flutter/material.dart';
-import 'package:crib_hunter/Models/appConstants.dart';
+import 'package:antoh/Models/appConstants.dart';
+
+import '../Models/postingObjects.dart';
 
 class BookPostingPage extends StatefulWidget {
   static final String routeName = '/bootPostingPageRoute';
-  final Posting posting;
+  final Posting? posting;
 
-  BookPostingPage({this.posting, Key key}) : super(key: key);
+  BookPostingPage({this.posting, Key ?key}) : super(key: key);
 
   @override
   _BookPostingPageState createState() => _BookPostingPageState();
 }
 
 class _BookPostingPageState extends State<BookPostingPage> {
-  Posting _posting;
+  Posting? _posting;
 
   @override
   void initState() {
@@ -54,7 +56,7 @@ class _BookPostingPageState extends State<BookPostingPage> {
                   itemBuilder: (context, index) {
                     return CalendarMonthWidget(
                       monthIndex: index,
-                      bookedDates: _posting.getAllBookedDates(),
+                      bookedDates: _posting?.getAllBookedDates(),
                     );
                   }),
             ),
