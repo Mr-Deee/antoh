@@ -6,7 +6,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import '../Models/appConstants.dart';
 import 'guestHomePage.dart';
 import 'loginPage.dart';
-import 'personalInfoPage.dart';
 
 import 'package:antoh/Models/appConstants.dart';
 

@@ -47,14 +47,14 @@ class _GuestHomePageState extends State<GuestHomePage> {
         iconData,
         color: AppConstants.selectedIconColor,
       ),
-      label: Text(
-        text,
-        style: TextStyle(
-          color: _selectedIndex == index
-              ? AppConstants.selectedIconColor
-              : AppConstants.nonSelectedIconColor,
-        ),
-      ),
+      // label: Text(
+      //   text,
+      //   style: TextStyle(
+      //     color: _selectedIndex == index
+      //         ? AppConstants.selectedIconColor
+      //         : AppConstants.nonSelectedIconColor,
+      //   ),
+      // ),
     );
   }
 
