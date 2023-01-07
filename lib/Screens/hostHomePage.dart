@@ -44,14 +44,14 @@ class _HostHomePageState extends State<HostHomePage> {
         iconData,
         color: AppConstants.selectedIconColor,
       ),
-      title: Text(
-        text,
-        style: TextStyle(
-          color: _selectedIndex == index
-              ? AppConstants.selectedIconColor
-              : AppConstants.nonSelectedIconColor,
-        ),
-      ),
+      // title: Text(
+      //   text,
+      //   style: TextStyle(
+      //     color: _selectedIndex == index
+      //         ? AppConstants.selectedIconColor
+      //         : AppConstants.nonSelectedIconColor,
+      //   ),
+      // ),
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:antoh/Screens/guestHomePage.dart';
 import 'package:antoh/Screens/hostHomePage.dart';
+import 'package:antoh/Screens/personalInfoPage.dart';
 import 'package:antoh/Screens/viewProfilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
