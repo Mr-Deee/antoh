@@ -4,18 +4,14 @@ import 'package:antoh/Screens/conversationPage.dart';
 import 'package:antoh/Screens/createPostingPage.dart';
 import 'package:antoh/Screens/hostHomePage.dart';
 
+import 'Screens/bookPostingPage.dart';
 import 'Screens/guestHomePage.dart';
 import 'Screens/loginPage.dart';
+import 'Screens/personalInfoPage.dart';
 import 'Screens/viewProfilePage.dart';
-import 'bookPostingPage.dart';
-import 'personalInfoPage.dart';
+
 import 'package:flutter/material.dart';
 import 'package:antoh/Models/appConstants.dart';
-
-import 'guestHomePage.dart';
-import 'loginPage.dart';
-import 'signUpPage.dart';
-import 'viewProfilePage.dart';
 
 void main() => runApp(MyApp());
 
@@ -46,7 +42,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
