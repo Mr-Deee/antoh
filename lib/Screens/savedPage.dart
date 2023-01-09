@@ -1,11 +1,11 @@
-import 'package:crib_hunter/Models/postingObjects.dart';
-import 'package:crib_hunter/Screens/viewPostingPage.dart';
-import 'package:crib_hunter/Views/gridWidgets.dart';
+import 'package:antoh/Models/postingObjects.dart';
+import 'package:antoh/Screens/viewPostingPage.dart';
+import 'package:antoh/Views/gridWidgets.dart';
 import 'package:flutter/material.dart';
-import 'package:crib_hunter/Models/appConstants.dart';
+import 'package:antoh/Models/appConstants.dart';
 
 class SavedPage extends StatefulWidget {
-  SavedPage({Key key}) : super(key: key);
+  SavedPage({Key? key}) : super(key: key);
 
   @override
   _SavedPageState createState() => _SavedPageState();
@@ -19,7 +19,7 @@ class _SavedPageState extends State<SavedPage> {
       child: GridView.builder(
         physics: ScrollPhysics(),
         shrinkWrap: true,
-        itemCount: AppConstants.currentUser.savedPostings.length,
+        itemCount: AppConstants.currentUser?.savedPostings!.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 15,
@@ -28,7 +28,7 @@ class _SavedPageState extends State<SavedPage> {
         ),
         itemBuilder: (context, index) {
           Posting currentPosting =
-              AppConstants.currentUser.savedPostings[index];
+              AppConstants.currentUser!.savedPostings![index];
           return Stack(
             children: [
               InkResponse(
