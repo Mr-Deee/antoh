@@ -26,12 +26,12 @@ class ViewPostingPage extends StatefulWidget {
 class _ViewPostingPageState extends State<ViewPostingPage> {
   Posting? _posting;
   LatLng ?_centerLatLong = LatLng(37.7836, -122.3899);
-  Completer<GoogleMapController> _completer;
+  Completer<GoogleMapController> ?_completer;
 
   void _calculateLatAndLng() {
     _centerLatLong = LatLng(37.7836, -122.3899);
     Geolocator()
-        .placemarkFromAddress(_posting.getFullAddress())
+        .placemarkFromAddress(_posting?.getFullAddress())
         .then((placemarks) {
       placemarks.forEach((placemark) {
         setState(() {
@@ -69,9 +69,9 @@ class _ViewPostingPageState extends State<ViewPostingPage> {
             AspectRatio(
               aspectRatio: 3 / 2,
               child: PageView.builder(
-                itemCount: _posting.displayImages.length,
+                itemCount: _posting?.displayImages?.length,
                 itemBuilder: (context, index) {
-                  MemoryImage currentImage = _posting.displayImages[index];
+                  MemoryImage currentImage = _posting!.displayImages![index];
                   return Image(
                     image: currentImage,
                     fit: BoxFit.fill,
@@ -95,7 +95,7 @@ class _ViewPostingPageState extends State<ViewPostingPage> {
                           Container(
                             width: MediaQuery.of(context).size.width / 1.75,
                             child: AutoSizeText(
-                              _posting.name,
+                              _posting?.name,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 26.0,
@@ -127,7 +127,7 @@ class _ViewPostingPageState extends State<ViewPostingPage> {
                             ),
                           ),
                           Text(
-                            '\$${_posting.price} / night',
+                            '\$${_posting?.price} / night',
                             style: TextStyle(
                               fontSize: 15.0,
                             ),
@@ -148,7 +148,7 @@ class _ViewPostingPageState extends State<ViewPostingPage> {
                         Container(
                           width: MediaQuery.of(context).size.width / 1.75,
                           child: AutoSizeText(
-                            _posting.description,
+                            _posting?.description,
                             style: TextStyle(),
                             minFontSize: 16.0,
                             maxFontSize: 22.0,
@@ -166,13 +166,13 @@ class _ViewPostingPageState extends State<ViewPostingPage> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => ViewProfilePage(
-                                        contact: _posting.host,
+                                        contact: _posting?.host,
                                       ),
                                     ),
                                   );
                                 },
                                 child: CircleAvatar(
-                                  backgroundImage: _posting.host.displayImage,
+                                  backgroundImage: _posting?.host?.displayImage,
                                   radius:
                                       MediaQuery.of(context).size.width / 13,
                                 ),
@@ -181,7 +181,7 @@ class _ViewPostingPageState extends State<ViewPostingPage> {
                             Padding(
                               padding: const EdgeInsets.only(top: 7.0),
                               child: Text(
-                                _posting.host.getFullName(),
+                                _posting!.host!.getFullName(),
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -199,18 +199,18 @@ class _ViewPostingPageState extends State<ViewPostingPage> {
                       children: <Widget>[
                         PostingInfoTile(
                           iconData: Icons.home,
-                          category: _posting.type,
-                          categoryInfo: '${_posting.getNumGuests()} guests',
+                          category: _posting!.type!,
+                          categoryInfo: '${_posting!.getNumGuests()} guests',
                         ),
                         PostingInfoTile(
                           iconData: Icons.hotel,
                           category: 'Beds',
-                          categoryInfo: _posting.getBedroomText(),
+                          categoryInfo: _posting!.getBedroomText(),
                         ),
                         PostingInfoTile(
                           iconData: Icons.wc,
                           category: 'Bathrooms',
-                          categoryInfo: _posting.getBathroomText(),
+                          categoryInfo: _posting!.getBathroomText(),
                         ),
                       ],
                     ),
@@ -232,9 +232,9 @@ class _ViewPostingPageState extends State<ViewPostingPage> {
                       crossAxisCount: 2,
                       childAspectRatio: 4 / 1,
                       children: List.generate(
-                        _posting.amenities.length,
+                        _posting!.amenities!.length,
                         (index) {
-                          String currentAmenity = _posting.amenities[index];
+                          String currentAmenity = _posting!.amenities![index];
                           return Text(
                             currentAmenity[index],
                             style: TextStyle(
@@ -258,7 +258,7 @@ class _ViewPostingPageState extends State<ViewPostingPage> {
                       bottom: 25.0,
                     ),
                     child: Text(
-                      _posting.getFullAddress(),
+                      _posting!.getFullAddress(),
                       style: TextStyle(
                         fontSize: 17.0,
                       ),
@@ -270,7 +270,7 @@ class _ViewPostingPageState extends State<ViewPostingPage> {
                       height: MediaQuery.of(context).size.height / 3,
                       child: GoogleMap(
                         onMapCreated: (controller) {
-                          _completer.complete(controller);
+                          _completer!.complete(controller);
                         },
                         mapType: MapType.normal,
                         initialCameraPosition: CameraPosition(
@@ -301,10 +301,10 @@ class _ViewPostingPageState extends State<ViewPostingPage> {
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0),
                     child: ListView.builder(
-                      itemCount: _posting.reviews.length,
+                      itemCount: _posting?.reviews?.length,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        Review currentReview = _posting.reviews[index];
+                        Review currentReview = _posting!.reviews![index];
                         return Padding(
                           padding:
                               const EdgeInsets.only(top: 10.0, bottom: 10.0),
@@ -326,12 +326,12 @@ class _ViewPostingPageState extends State<ViewPostingPage> {
 }
 
 class PostingInfoTile extends StatelessWidget {
-  final IconData iconData;
-  final String category;
-  final String categoryInfo;
+  final IconData? iconData;
+  final String ?category;
+  final String ?categoryInfo;
 
   PostingInfoTile({
-    Key key,
+    Key? key,
     this.iconData,
     this.category,
     this.categoryInfo,
@@ -345,14 +345,14 @@ class PostingInfoTile extends StatelessWidget {
         size: 22.0,
       ),
       title: Text(
-        category,
+        category!,
         style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 16.0,
         ),
       ),
       subtitle: Text(
-        categoryInfo,
+        categoryInfo!,
         style: TextStyle(
           fontSize: 14.0,
         ),
