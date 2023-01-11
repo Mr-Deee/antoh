@@ -1,6 +1,9 @@
+import '../Models/userObjects.dart';
 import 'guestHomePage.dart';
 import 'package:antoh/Views/textWidgets.dart';
 import 'package:flutter/material.dart';
+
+import 'hostHomePage.dart';
 
 class SignUpPage extends StatefulWidget {
   static final String routeName = '/signUpPageRoute';
@@ -12,8 +15,39 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+
+
+
+  User ?firebaseUser;
+  User? currentfirebaseUser;
+  String? _email, _password, _firstName,_lastname, _mobileNumber;
+
+  final formKey = GlobalKey<FormState>();
+  TextEditingController firstNameTextEditingController =
+  new TextEditingController();
+  TextEditingController lastNameTextEditingController =
+  new TextEditingController();
+  TextEditingController emailTextEditingController =
+  new TextEditingController();
+  TextEditingController passwordTextEditingController =
+  new TextEditingController();
+
+  TextEditingController phoneTextEditingController =
+  new TextEditingController();
+  String? dateofBirth;
+  String? firstName;
+  String? lastName;
+  int ?phone;
+  String? Gender;
+  int ?Age;
+
+  String initValue = "Select your Birth Date";
+  bool isDateSelected = false;
+  DateTime? birthDate; // instance of DateTime
+  String ?birthDateInString;
+
   void _signUp() {
-    Navigator.pushNamed(context, GuestHomePage.routeName);
+    Navigator.pushNamed(context, HostHomePage.routeName);
   }
 
   @override
@@ -126,5 +160,91 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       ),
     );
+
+
+
+  }
+
+
+  Future<void> registerNewUser(BuildContext context) async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return ProgressDialog(
+            message: "Registering,Please wait.....",
+          );
+        });
+    registerInfirestore(context);
+
+    firebaseUser = (await _firebaseAuth
+        .createUserWithEmailAndPassword(
+        email: emailTextEditingController.text,
+        password: passwordTextEditingController.text)
+        .catchError((errMsg) {
+      Navigator.pop(context);
+      displayToast("Error" + errMsg.toString(), context);
+    }))
+        .user;
+
+    if (firebaseUser != null) // user created
+
+        {
+      //save use into to database
+
+      Map userDataMap = {
+        "firstName": firstNameTextEditingController.text.trim(),
+        "lastName": lastNameTextEditingController.text.trim(),
+        "email": emailTextEditingController.text.trim(),
+        "fullName": firstNameTextEditingController.text.trim()  +lastNameTextEditingController.text.trim(),
+        "phone": phoneTextEditingController.text.trim(),
+        // "Dob":birthDate,
+        // "Gender":Gender,
+      };
+      clients.child(firebaseUser!.uid).set(userDataMap);
+      // Admin.child(firebaseUser!.uid).set(userDataMap);
+
+      currentfirebaseUser = firebaseUser;
+
+      displayToast("Congratulation, your account has been created", context);
+
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => SignInPage()),
+              (Route<dynamic> route) => false);
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return SignInPage();
+        }),
+      );
+      // Navigator.pop(context);
+      //error occured - display error
+      displayToast("user has not been created", context);
+    }
+  }
+
+  Future<void> registerInfirestore(BuildContext context) async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if(user!=null) {
+      FirebaseFirestore.instance.collection('Clients').doc(_email).set({
+        'firstName': _firstName,
+        'lastName': _lastname,
+        'MobileNumber': _mobileNumber,
+        'fullName': _firstName !+ _lastname!,
+        'Email': _email,
+        'Gender': Gender,
+        'Date Of Birth': birthDate,
+      });
+    }
+    print("Registered");
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(builder: (context) {
+    //     return SignInScreen();
+    //   }),
+    // );
+
+
   }
 }

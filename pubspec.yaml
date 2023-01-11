@@ -42,13 +42,13 @@ dev_dependencies:
     sdk: flutter
 
 
-  auto_size_text: ^2.1.0
-  flutter_rating: ^0.0.2
-  geolocator: ^5.2.1
+  auto_size_text:
+  flutter_rating:
+  geolocator:
   firebase_core:
   firebase_auth:
   cloud_firestore:
-  google_maps_flutter: ^0.5.21+15
+  google_maps_flutter:
   firebase_storage:
 
   # The "flutter_lints" package below contains a set of recommended lints to
