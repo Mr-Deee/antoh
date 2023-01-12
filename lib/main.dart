@@ -8,6 +8,7 @@ import 'Screens/bookPostingPage.dart';
 import 'Screens/guestHomePage.dart';
 import 'Screens/loginPage.dart';
 import 'Screens/personalInfoPage.dart';
+import 'Screens/signUpPage.dart';
 import 'Screens/viewProfilePage.dart';
 
 import 'package:flutter/material.dart';
