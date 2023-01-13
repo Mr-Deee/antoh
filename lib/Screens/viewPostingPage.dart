@@ -274,13 +274,13 @@ class _ViewPostingPageState extends State<ViewPostingPage> {
                         },
                         mapType: MapType.normal,
                         initialCameraPosition: CameraPosition(
-                          target: _centerLatLong,
+                          target: _centerLatLong!,
                           zoom: 14,
                         ),
                         markers: <Marker>{
                           Marker(
                             markerId: MarkerId('Home Location'),
-                            position: _centerLatLong,
+                            position: _centerLatLong!,
                             icon: BitmapDescriptor.defaultMarker,
                           ),
                         },

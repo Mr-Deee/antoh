@@ -47,10 +47,11 @@ dev_dependencies:
   geolocator:
   firebase_core:
   firebase_auth:
-  cloud_firestore:
+  cloud_firestore: ^3.4.9
+  fluttertoast:
   google_maps_flutter:
   firebase_storage:
-
+  firebase_database: any
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your

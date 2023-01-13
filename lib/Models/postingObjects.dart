@@ -49,7 +49,7 @@ class Posting {
 
   Future<void> getPostingInfoFromFirestore() async {
     DocumentSnapshot snapshot =
-        await Firestore.instance.collection('postings').document(this.id).get();
+        await FirebaseFirestore.instance.collection('postings').doc(this.id).get();
     this.getPostingInfoFromSnapshot(snapshot);
   }
 
@@ -82,7 +82,7 @@ class Posting {
         .ref()
         .child(imagePath)
         .getData(1024 * 1024);
-    this.displayImages!.add(MemoryImage(imageData));
+    this.displayImages!.add(MemoryImage(imageData!));
     return this.displayImages!.first;
   }
 
@@ -93,7 +93,7 @@ class Posting {
           .ref()
           .child(imagePath)
           .getData(1024 * 1024);
-      this.displayImages!.add(MemoryImage(imageData));
+      this.displayImages!.add(MemoryImage(imageData!));
     }
 
     return this.displayImages!;
@@ -151,10 +151,10 @@ class Posting {
 
   Future<void> getAllBookingsFromFirestore() async {
     this.bookings = [];
-    QuerySnapshot snapshots = await Firestore.instance
+    QuerySnapshot snapshots = await FirebaseFirestore.instance
         .collection('postings/${this.id}/bookings')
-        .getDocuments();
-    for (var snapshot in snapshots.documents) {
+        .get();
+    for (var snapshot in snapshots.docs) {
       Booking newBooking = Booking();
       await newBooking.getBookingInfoFromFirestoreFromPosting(this, snapshot);
       this.bookings!.add(newBooking);

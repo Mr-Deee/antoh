@@ -37,8 +37,8 @@ class _LoginPageState extends State<LoginPage> {
         password: password,
       )
           .then((currentUser) {
-        String userID = currentUser.user.uid;
-        AppConstants.currentUser = User(id: userID);
+        String? userID = currentUser.user?.uid;
+       // AppConstants.currentUser = User(id: userID);
         AppConstants.currentUser?.getUserInfoFromFirestore().whenComplete(() {
           AppConstants.currentUser?.getImageFromStorage().whenComplete(() {
             Navigator.pushNamed(context, GuestHomePage.routeName);

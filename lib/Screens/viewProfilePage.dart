@@ -142,7 +142,7 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
                 child: StreamBuilder(
-                  stream: Firestore.instance
+                  stream: FirebaseFirestore.instance
                       .collection('users/${_user!.id}/reviews')
                       .orderBy('dateTime', descending: true)
                       .snapshots(),
@@ -155,11 +155,11 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
 
                       default:
                         return ListView.builder(
-                          itemCount: snapshots.data!.documents.length,
+                          itemCount: snapshots.data!.docs.length,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             DocumentSnapshot snapshot =
-                                snapshots.data!.documents[index];
+                                snapshots.data!.docs[index];
                             Review currentReview = Review();
                             currentReview.getReviewInfoFromFirestore(snapshot);
                             return Padding(

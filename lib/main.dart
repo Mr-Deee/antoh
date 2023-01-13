@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:antoh/Screens/conversationPage.dart';
 import 'package:antoh/Screens/createPostingPage.dart';
 import 'package:antoh/Screens/hostHomePage.dart';
-
+import 'package:firebase_database/firebase_database.dart';
 import 'Screens/bookPostingPage.dart';
 import 'Screens/guestHomePage.dart';
 import 'Screens/loginPage.dart';
@@ -15,6 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:antoh/Models/appConstants.dart';
 
 void main() => runApp(MyApp());
+DatabaseReference clients = FirebaseDatabase.instance.ref().child("Clients");
+DatabaseReference Doctor = FirebaseDatabase.instance.ref().child("Doctors");
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

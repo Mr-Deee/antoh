@@ -52,7 +52,7 @@ class _ExplorePageState extends State<ExplorePage> {
               ),
             ),
             StreamBuilder(
-              stream: Firestore.instance.collection('postings').snapshots(),
+              stream: FirebaseFirestore.instance.collection('postings').snapshots(),
               builder: (context, snapshots) {
                 switch (snapshots.connectionState) {
                   case ConnectionState.waiting:

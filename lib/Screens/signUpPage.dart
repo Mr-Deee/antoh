@@ -1,9 +1,13 @@
-import '../Models/userObjects.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../Views/progressdialog.dart';
+import '../main.dart';
 import 'guestHomePage.dart';
 import 'package:antoh/Views/textWidgets.dart';
 import 'package:flutter/material.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'hostHomePage.dart';
+import 'loginPage.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SignUpPage extends StatefulWidget {
   static final String routeName = '/signUpPageRoute';
@@ -164,7 +168,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
 
   }
-
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   Future<void> registerNewUser(BuildContext context) async {
     showDialog(
@@ -209,13 +213,13 @@ class _SignUpPageState extends State<SignUpPage> {
       displayToast("Congratulation, your account has been created", context);
 
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => SignInPage()),
+          MaterialPageRoute(builder: (context) => LoginPage()),
               (Route<dynamic> route) => false);
     } else {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) {
-          return SignInPage();
+          return LoginPage();
         }),
       );
       // Navigator.pop(context);
@@ -246,5 +250,8 @@ class _SignUpPageState extends State<SignUpPage> {
     // );
 
 
+  }
+  displayToast(String message, BuildContext context) {
+    Fluttertoast.showToast(msg: message);
   }
 }

@@ -21,7 +21,7 @@ class Conversation {
   }
 
   void getConversationInfoFromFirestore(DocumentSnapshot snapshot) {
-    this.id = snapshot.documentID;
+    this.id = snapshot.id;
 
     String lastMessageText = snapshot['lastMessageText'] ?? "";
     Timestamp lastMessageTimestamp =

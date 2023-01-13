@@ -21,7 +21,7 @@ class Contact {
 
   Future<void> getContactInfoFromFirestore() async {
     DocumentSnapshot snapshot =
-        await Firestore.instance.collection('users').document(this.id).get();
+        await FirebaseFirestore.instance.collection('users').doc(this.id).get();
     this.firstName = snapshot['firstName'] ?? "";
     this.lastName = snapshot['lastName'] ?? "";
   }
@@ -35,7 +35,7 @@ class Contact {
         .ref()
         .child(imagePath)
         .getData(1024 * 1024);
-    this.displayImage = MemoryImage(imageData);
+    this.displayImage = MemoryImage(imageData!);
     return this.displayImage;
   }
 
@@ -92,7 +92,7 @@ class User extends Contact {
 
   Future<void> getUserInfoFromFirestore() async {
     DocumentSnapshot snapshot =
-        await Firestore.instance.collection('users').document(this.id).get();
+        await FirebaseFirestore.instance.collection('users').doc(this.id).get();
     this.firstName = snapshot['firstName'] ?? "";
     this.lastName = snapshot['lastName'] ?? "";
     this.email = snapshot['email'] ?? "";
@@ -129,10 +129,10 @@ class User extends Contact {
 
   Future<void> getAllBookingsFromFirestore() async {
     this.bookings = [];
-    QuerySnapshot snapshots = await Firestore.instance
+    QuerySnapshot snapshots = await FirebaseFirestore.instance
         .collection('users/${this.id}/bookings')
-        .getDocuments();
-    for (var snapshot in snapshots.documents) {
+        .get();
+    for (var snapshot in snapshots.docs) {
       Booking newBooking = Booking();
       await newBooking.getBookingInfoFromFirestoreFromUser(
           this.createContactFromUser(), snapshot);
