@@ -13,8 +13,22 @@ import 'Screens/viewProfilePage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:antoh/Models/appConstants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(MyApp());
+
+
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+
+  runApp(MyApp());
+}
+
+
 DatabaseReference clients = FirebaseDatabase.instance.ref().child("Clients");
 DatabaseReference Doctor = FirebaseDatabase.instance.ref().child("Doctors");
 

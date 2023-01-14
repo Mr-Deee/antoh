@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../Views/progressdialog.dart';
-import '../main.dart';
 import 'guestHomePage.dart';
 import 'package:antoh/Views/textWidgets.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'hostHomePage.dart';
 import 'loginPage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
+import 'package:antoh/main.dart';
 class SignUpPage extends StatefulWidget {
   static final String routeName = '/signUpPageRoute';
 
