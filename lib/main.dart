@@ -1,15 +1,5 @@
 import 'dart:async';
 
-import 'package:antoh/Screens/conversationPage.dart';
-import 'package:antoh/Screens/createPostingPage.dart';
-import 'package:antoh/Screens/hostHomePage.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'Screens/bookPostingPage.dart';
-import 'Screens/guestHomePage.dart';
-import 'Screens/loginPage.dart';
-import 'Screens/personalInfoPage.dart';
-import 'Screens/signUpPage.dart';
-import 'Screens/viewProfilePage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:antoh/Models/appConstants.dart';
@@ -44,15 +34,15 @@ class MyApp extends StatelessWidget {
       ),
       home: MyHomePage(),
       routes: {
-        LoginPage.routeName: (context) => LoginPage(),
-        SignUpPage.routeName: (context) => SignUpPage(),
-        GuestHomePage.routeName: (context) => GuestHomePage(),
-        PersonalInfoPage.routeName: (context) => PersonalInfoPage(),
-        ViewProfilePage.routeName: (context) => ViewProfilePage(),
-        BookPostingPage.routeName: (context) => BookPostingPage(),
-        ConversationPage.routeName: (context) => ConversationPage(),
-        HostHomePage.routeName: (context) => HostHomePage(),
-        CreatePostingPage.routeName: (context) => CreatePostingPage(),
+        // LoginPage.routeName: (context) => LoginPage(),
+        // SignUpPage.routeName: (context) => SignUpPage(),
+        // GuestHomePage.routeName: (context) => GuestHomePage(),
+        // PersonalInfoPage.routeName: (context) => PersonalInfoPage(),
+        // ViewProfilePage.routeName: (context) => ViewProfilePage(),
+        // BookPostingPage.routeName: (context) => BookPostingPage(),
+        // ConversationPage.routeName: (context) => ConversationPage(),
+        // HostHomePage.routeName: (context) => HostHomePage(),
+        // CreatePostingPage.routeName: (context) => CreatePostingPage(),
       },
     );
   }
@@ -68,9 +58,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
-    Timer(Duration(seconds: 2), () {
-      Navigator.pushNamed(context, LoginPage.routeName);
-    });
+    // Timer(Duration(seconds: 2), () {
+    //   Navigator.pushNamed(context, LoginPage.routeName);
+    // });
 
     super.initState();
   }
