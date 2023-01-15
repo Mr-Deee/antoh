@@ -50,6 +50,7 @@ dev_dependencies:
   cloud_firestore:
   firebase_auth:
   fluttertoast:
+  image_picker:
   google_maps_flutter:
   firebase_storage:
   firebase_database: any
@@ -58,6 +59,8 @@ dev_dependencies:
   animate_do: ^3.0.2
   awesome_dialog: ^3.0.2
   email_validator: ^2.1.17
+  cached_network_image: ^3.2.0
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

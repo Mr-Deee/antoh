@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:antoh/screens/homepage.dart';
 import 'package:antoh/utils/InputValidator.dart';
 import 'package:antoh/provider/UserProvider.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
 
@@ -259,12 +259,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     const SizedBox(
                       height: 15,
                     ),
-                    SizedBox(
-                        height: 100,
-                        child: Image.asset(
-                          "assets/images/logo.png",
-                          fit: BoxFit.contain,
-                        )),
+
+                    Text('Antohs',style: TextStyle(
+
+                        fontSize: 50,
+                        fontWeight: FontWeight.bold
+                    ),),
+
                     const SizedBox(
                       height: 45,
                     ),
@@ -301,4 +302,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       ),
     );
   }
+}
+displayToast(String message, BuildContext context) {
+  Fluttertoast.showToast(msg: message);
 }
