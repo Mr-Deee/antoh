@@ -9,7 +9,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'MODEL/Users.dart';
+import 'Screens/addestate.dart';
+import 'Screens/admin.dart';
 import 'Screens/homepage.dart';
+import 'Screens/login_screen.dart';
+import 'Screens/registration_screen.dart';
 
 
 void main() async {
@@ -59,6 +63,20 @@ class MyApp extends StatelessWidget {
         title: 'Real Estate',
         theme: genetalTheme,
         home: HomePage(),
+
+
+
+          initialRoute: FirebaseAuth.instance.currentUser == null
+              ? '/SignIn'
+              : '/Homepage',
+          routes: {
+            "/admin": (context) => admin(),
+            "/SignUP": (context) => RegistrationScreen(),
+            // "/OnBoarding": (context) => OnBoarding(),
+            "/SignIn": (context) =>LoginScreen(),
+            "/Homepage": (context) => HomePage(),
+            "/addproduct":(context)=>addproduct()
+          }
       ),
     );
   }
