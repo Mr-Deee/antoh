@@ -33,18 +33,19 @@ class _adminState extends State<admin> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBar(
+
         automaticallyImplyLeading : false,
-        backgroundColor:  Color(0xffE99E22),
+        backgroundColor:    Colors.black,
         centerTitle: true,
         title:         Row(
           children: [
 
-            const Text(
-              "Admin",
+             Text(
+              "Antoh Admin",
               style: TextStyle(
                 fontFamily: "Nunito",
-                fontSize: 28,
-                color: ColorPalette.timberGreen,
+                fontSize: 18,
+                color: ColorPalette.white,
               ),
             ),
           ],
@@ -132,180 +133,182 @@ class _adminState extends State<admin> {
                         height: 160,
 
                         decoration: const BoxDecoration(
-                          color:  Color(0xffE99E22),
+                          color:Colors.white,
                           borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(16),
-                            topRight: Radius.circular(16),
-                            bottomLeft: Radius.circular(16),
-                            bottomRight: Radius.circular(16),
+                            topLeft: Radius.circular(36),
+                            topRight: Radius.circular(36),
+                            bottomLeft: Radius.circular(36),
+                            bottomRight: Radius.circular(36),
                           ),
                         ),
 
-                        child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Text("Hi",style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold
+                        child: Padding(
+                          padding: const EdgeInsets.all(13.0),
+                          child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Text("Hi",style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold
 
-                              ),),
-                              Padding(
-                                padding: const EdgeInsets.only(top:38.0),
-                                child: Text("Miss , Asheley"),
-                              ),
+                                ),),
 
 
 
-                            ],
-                          ),
 
-                              Padding(
-                                padding: const EdgeInsets.all(28.0),
-                                child: GestureDetector(
+                              ],
+                            ),
+
+                                Padding(
+                                  padding: const EdgeInsets.all(28.0),
+                                  child: GestureDetector(
 
 
 
-                                    onTap: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return AlertDialog(
-                                            title: const Text(
-                                              "Add Product Group",
-                                              style: TextStyle(fontFamily: "Nunito"),
-                                            ),
-                                            content: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Container(
-                                                  decoration: BoxDecoration(
-                                                    color: ColorPalette.white,
-                                                    borderRadius: BorderRadius.circular(12),
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        offset: const Offset(0, 3),
-                                                        blurRadius: 6,
-                                                        color: const Color(0xff000000).withOpacity(0.16),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  height: 50,
-                                                  child: TextField(
-                                                    textInputAction: TextInputAction.next,
-                                                    key: UniqueKey(),
-                                                    controller: _newProductGroup,
-                                                    keyboardType: TextInputType.text,
-                                                    style: const TextStyle(
-                                                      fontFamily: "Nunito",
-                                                      fontSize: 16,
-                                                      color: ColorPalette.nileBlue,
-                                                    ),
-                                                    decoration: InputDecoration(
-                                                      border: InputBorder.none,
-                                                      hintText: "Product Group Name",
-                                                      filled: true,
-                                                      fillColor: Colors.transparent,
-                                                      hintStyle: TextStyle(
-                                                        fontFamily: "Nunito",
-                                                        fontSize: 16,
-                                                        color: ColorPalette.nileBlue.withOpacity(0.58),
-                                                      ),
-                                                    ),
-                                                    cursorColor: ColorPalette.timberGreen,
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 20,
-                                                ),
-                                                GestureDetector(
-                                                  onTap: () async {
-                                                    if (_newProductGroup.text != null &&
-                                                        _newProductGroup.text != "") {
-                                                      try {
-                                                        final DocumentSnapshot<Map<String, dynamic>>
-                                                        _doc = await _firestore
-                                                            .collection("utils")
-                                                            .doc("productGroups")
-                                                            .get();
-                                                        final List<dynamic> _tempList =
-                                                        _doc.data()!['list'] as List<dynamic>;
-                                                        if (_tempList.contains(_newProductGroup.text)) {
-                                                          displayToast("Group Name already created",context,);
-                                                        } else {
-                                                          _tempList.add(_newProductGroup.text);
-                                                          _firestore
-                                                              .collection('utils')
-                                                              .doc("productGroups")
-                                                              .update({'list': _tempList});
-                                                          displayToast("Added Successfully",context,);
-                                                        }
-                                                      } catch (e) {
-                                                        displayToast("An Error Occured!",context,);
-                                                      }
-                                                      // ignore: use_build_context_synchronously
-                                                      Navigator.of(context).pop();
-                                                      _newProductGroup.text = "";
-                                                    } else {
-                                                      displayToast("Enter Valid Name!",context,);
-                                                    }
-                                                  },
-                                                  child: Container(
-                                                    height: 45,
-                                                    width: 90,
+                                      onTap: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return AlertDialog(
+                                              title: const Text(
+                                                "Add Estate Category ",
+                                                style: TextStyle(fontFamily: "Nunito"),
+                                              ),
+                                              content: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Container(
                                                     decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(20),
-                                                      color: ColorPalette.pacificBlue,
+                                                      color: ColorPalette.white,
+                                                      borderRadius: BorderRadius.circular(12),
                                                       boxShadow: [
                                                         BoxShadow(
                                                           offset: const Offset(0, 3),
                                                           blurRadius: 6,
-                                                          color:
-                                                          const Color(0xff000000).withOpacity(0.16),
+                                                          color: const Color(0xff000000).withOpacity(0.16),
                                                         ),
                                                       ],
                                                     ),
-                                                    child: const Center(
-                                                      child: Text(
-                                                        "Done",
-                                                        style: TextStyle(
-                                                          fontSize: 15,
+                                                    height: 50,
+                                                    child: TextField(
+                                                      textInputAction: TextInputAction.next,
+                                                      key: UniqueKey(),
+                                                      controller: _newProductGroup,
+                                                      keyboardType: TextInputType.text,
+                                                      style: const TextStyle(
+                                                        fontFamily: "Nunito",
+                                                        fontSize: 16,
+                                                        color: ColorPalette.nileBlue,
+                                                      ),
+                                                      decoration: InputDecoration(
+                                                        border: InputBorder.none,
+                                                        hintText: "Add Estate Category",
+                                                        filled: true,
+                                                        fillColor: Colors.transparent,
+                                                        hintStyle: TextStyle(
                                                           fontFamily: "Nunito",
-                                                          color: ColorPalette.white,
+                                                          fontSize: 16,
+                                                          color: ColorPalette.nileBlue.withOpacity(0.58),
+                                                        ),
+                                                      ),
+                                                      cursorColor: ColorPalette.timberGreen,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 20,
+                                                  ),
+                                                  GestureDetector(
+                                                    onTap: () async {
+                                                      if (_newProductGroup.text != null &&
+                                                          _newProductGroup.text != "") {
+                                                        try {
+                                                          final DocumentSnapshot<Map<String, dynamic>>
+                                                          _doc = await _firestore
+                                                              .collection("utils")
+                                                              .doc("productGroups")
+                                                              .get();
+                                                          final List<dynamic> _tempList =
+                                                          _doc.data()!['list'] as List<dynamic>;
+                                                          if (_tempList.contains(_newProductGroup.text)) {
+                                                            displayToast("Group Name already created",context,);
+                                                          } else {
+                                                            _tempList.add(_newProductGroup.text);
+                                                            _firestore
+                                                                .collection('utils')
+                                                                .doc("productGroups")
+                                                                .update({'list': _tempList});
+                                                            displayToast("Added Successfully",context,);
+                                                          }
+                                                        } catch (e) {
+                                                          displayToast("An Error Occured!",context,);
+                                                        }
+                                                        // ignore: use_build_context_synchronously
+                                                        Navigator.of(context).pop();
+                                                        _newProductGroup.text = "";
+                                                      } else {
+                                                        displayToast("Enter Valid Name!",context,);
+                                                      }
+                                                    },
+                                                    child: Container(
+                                                      height: 45,
+                                                      width: 90,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius: BorderRadius.circular(20),
+                                                        color: ColorPalette.white,
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                            offset: const Offset(0, 3),
+                                                            blurRadius: 6,
+                                                            color:
+                                                            const Color(0xff000000).withOpacity(0.16),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      child: const Center(
+                                                        child: Text(
+                                                          "Done",
+                                                          style: TextStyle(
+
+                                                            fontSize: 15,
+                                                            fontFamily: "Nunito",
+                                                            color: Colors.black,
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                      );
-                                    },
-                                    // onTap: (){
-                                    //   Navigator.pushNamed(
-                                    //       context,"/addproduct");
-                                    //
-                                    // },
-                                    child: Icon(Icons.add,
-                                    color:   Color.fromRGBO(216, 78, 16, 1),)),
-                              ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                      // onTap: (){
+                                      //   Navigator.pushNamed(
+                                      //       context,"/addproduct");
+                                      //
+                                      // },
+                                      child: Icon(Icons.add,
+                                      color:   Color.fromRGBO(216, 78, 16, 1),)),
+                                ),
 
 
 
-                        ],
+                          ],
                       ),
+                        ),
 
                       ),
                     ),
                   ],
                 ),
+     SizedBox(height: 28,),
                 Expanded(
                   child: StreamBuilder(
                     stream:
-                    _firestore.collection("utils").snapshots(),
+                    _firestore.collection("Estates").snapshots(),
                     builder: (
                         BuildContext context,
                         AsyncSnapshot<
@@ -322,7 +325,7 @@ class _adminState extends State<admin> {
                           const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             childAspectRatio: 2,
-                            crossAxisSpacing: 20,
+                            crossAxisSpacing: 30,
                             mainAxisSpacing: 20,
                           ),
                           itemCount: _productGroups.length,

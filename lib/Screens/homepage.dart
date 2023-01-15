@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:antoh/Screens/admin.dart';
 import 'package:provider/provider.dart';
 import 'package:antoh/provider/UserProvider.dart';
 import 'package:antoh/screens/categories.dart';
@@ -84,7 +85,23 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 20,
               ),
-              Padding(padding: EdgeInsets.only(right: 20), child: buyAndRent),
+              ElevatedButton(
+                onPressed: () {
+
+                  Navigator.push(context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              admin()));
+                },
+                child: Text(
+                  "RENT",
+                  style: TextStyle(color: Colors.grey[500]),
+                ),
+                // color: Colors.yellow[300],
+                // shape: RoundedRectangleBorder(
+                //   borderRadius: BorderRadius.circular(18.0),
+                // ),
+              ),
               SizedBox(
                 height: 20,
               ),
@@ -390,34 +407,24 @@ var searchBar = Container(
       ),
     ));
 
-var buyAndRent = Row(
-  mainAxisAlignment: MainAxisAlignment.center,
-  children: [
-    ElevatedButton(
-      onPressed: () {},
-      child: Text(
-        "BUY",
-        style: TextStyle(color: Colors.grey[500]),
-      ),
-      // color: Colors.green[300],
-      // shape: RoundedRectangleBorder(
-      //   borderRadius: BorderRadius.circular(18.0),
-      // ),
-    ),
-    SizedBox(width: 10),
-    ElevatedButton(
-      onPressed: () {},
-      child: Text(
-        "RENT",
-        style: TextStyle(color: Colors.grey[500]),
-      ),
-      // color: Colors.yellow[300],
-      // shape: RoundedRectangleBorder(
-      //   borderRadius: BorderRadius.circular(18.0),
-      // ),
-    ),
-  ],
-);
+// var buyAndRent = Row(
+//   mainAxisAlignment: MainAxisAlignment.center,
+//   children: [
+//     ElevatedButton(
+//       onPressed: () {},
+//       child: Text(
+//         "BUY",
+//         style: TextStyle(color: Colors.grey[500]),
+//       ),
+//       // color: Colors.green[300],
+//       // shape: RoundedRectangleBorder(
+//       //   borderRadius: BorderRadius.circular(18.0),
+//       // ),
+//     ),
+//     SizedBox(width: 10),
+//
+//   ],
+// );
 
 class CategoryWidget extends StatelessWidget {
   final Category category;
@@ -438,6 +445,24 @@ class CategoryWidget extends StatelessWidget {
                     fit: BoxFit.cover, image: AssetImage(category.image)),
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               )),
+        ),
+
+        ElevatedButton(
+          onPressed: () {
+
+            Navigator.push(context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        admin()));
+          },
+          child: Text(
+            "RENT",
+            style: TextStyle(color: Colors.grey[500]),
+          ),
+          // color: Colors.yellow[300],
+          // shape: RoundedRectangleBorder(
+          //   borderRadius: BorderRadius.circular(18.0),
+          // ),
         ),
         Positioned(
           left: 10,
