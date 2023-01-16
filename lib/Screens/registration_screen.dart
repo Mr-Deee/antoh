@@ -86,9 +86,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           focusColor: Theme.of(context).primaryColor,
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
-                    color: Theme.of(context).primaryColor, width: 2.0),
+                    color: Colors.black, width: 2.0),
                 borderRadius: BorderRadius.circular(10)),
-            prefixIcon:  Icon(Icons.account_circle,color: Theme.of(context).primaryColor),
+            prefixIcon:  Icon(Icons.account_circle,color: Colors.black,),
             contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
             hintText: "Firstname",
             border:
@@ -107,9 +107,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           focusColor: Theme.of(context).primaryColor,
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
-                    color: Theme.of(context).primaryColor, width: 2.0),
+                    color:  Colors.black, width: 2.0),
                 borderRadius: BorderRadius.circular(10)),
-            prefixIcon:  Icon(Icons.account_circle,color: Theme.of(context).primaryColor,),
+            prefixIcon:  Icon(Icons.account_circle ,color: Colors.black,),
             contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
             hintText: "Lastname",
             border:
@@ -130,7 +130,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 borderSide: BorderSide(
                     color: Theme.of(context).primaryColor, width: 2.0),
                 borderRadius: BorderRadius.circular(10)),
-            prefixIcon:  Icon(Icons.mail,color: Theme.of(context).primaryColor,),
+            prefixIcon:  Icon(Icons.mail,color: Colors.black,),
             contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
             hintText: "Email",
             border:
@@ -151,7 +151,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 borderSide: BorderSide(
                     color: Theme.of(context).primaryColor, width: 2.0),
                 borderRadius: BorderRadius.circular(10)),
-          prefixIcon:  Icon(Icons.vpn_key,color: Theme.of(context).primaryColor,),
+          prefixIcon:  Icon(Icons.vpn_key,color: Colors.black,),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Password",
           border:OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
@@ -162,6 +162,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               passwordVisible
                   ? Icons.visibility
                   : Icons.visibility_off,
+              color: Colors.black,
             ),
             onPressed: () {
               // Update the state i.e. toogle the state of passwordVisible variable
@@ -187,17 +188,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 borderSide: BorderSide(
                     color: Theme.of(context).primaryColor, width: 2.0),
                 borderRadius: BorderRadius.circular(10)),
-          prefixIcon:  Icon(Icons.vpn_key,color: Theme.of(context).primaryColor,),
+          prefixIcon:  Icon(Icons.vpn_key,color: Colors.black,),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Confirm Password",
           border:OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
           suffixIcon: IconButton(
-            color: Theme.of(context).primaryColor,
+            color: Colors.black,
             icon: Icon(
               // Based on passwordVisible state choose the icon
               passwordVisible
                   ? Icons.visibility
                   : Icons.visibility_off,
+
+              color: Colors.black,
             ),
             onPressed: () {
               // Update the state i.e. toogle the state of passwordVisible variable
@@ -212,7 +215,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     final signupButton = Material(
        elevation: 5,
       borderRadius: BorderRadius.circular(30),
-      color: Theme.of(context).primaryColor,
+      color: Colors.black,
       child: MaterialButton(
         padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
@@ -260,11 +263,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       height: 15,
                     ),
 
-                    Text('Antohs',style: TextStyle(
 
-                        fontSize: 50,
-                        fontWeight: FontWeight.bold
-                    ),),
+                    new Image.asset(
+                      'assets/images/antohlogo.png',
+                      width: 600.0,
+                      height: 240.0,
+                      fit: BoxFit.cover,
+                    ),
 
                     const SizedBox(
                       height: 45,

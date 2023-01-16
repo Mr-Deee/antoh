@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
 
           initialRoute: FirebaseAuth.instance.currentUser == null
               ? '/SignIn'
-              : '/Homepage',
+              : '/admin',
           routes: {
             "/admin": (context) => admin(),
             "/SignUP": (context) => RegistrationScreen(),

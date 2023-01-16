@@ -84,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 borderRadius: BorderRadius.circular(10)),
             prefixIcon: Icon(
               Icons.mail,
-              color: Theme.of(context).primaryColor,
+              color: Colors.black,
             ),
             contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
             hintText: "Email",
@@ -106,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 borderSide: BorderSide(
                     color: Theme.of(context).primaryColor, width: 2.0),
                 borderRadius: BorderRadius.circular(10)),
-        prefixIcon:  Icon(Icons.vpn_key,color: Theme.of(context).primaryColor,),
+        prefixIcon:  Icon(Icons.vpn_key,color: Colors.black,),
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         hintText: "Password",
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
@@ -115,6 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
           icon: Icon(
             // Based on passwordVisible state choose the icon
             passwordVisible ? Icons.visibility : Icons.visibility_off,
+            color: Colors.black,
           ),
           onPressed: () {
             // Update the state i.e. toogle the state of passwordVisible variable
@@ -129,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final loginButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(30),
-      color: Theme.of(context).primaryColor,
+      color: Colors.black,
       child: MaterialButton(
         padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
@@ -164,12 +165,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           const SizedBox(
                             height: 10,
                           ),
-                          
-                          Text('Antohs',style: TextStyle(
 
-                            fontSize: 50,
-                            fontWeight: FontWeight.bold
-                          ),),
+                          new Image.asset(
+                            'assets/images/antohlogo.png',
+                            width: 600.0,
+                            height: 240.0,
+                            fit: BoxFit.cover,
+                          ),
 
                           // SizedBox(
                           //     height: 100,
@@ -205,13 +207,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               const SizedBox(
                                 height: 15,
                               ),
-                              GestureDetector(
-                              child: Image.asset(
-                                "assets/images/google.png",
-                                width: 206,
-                              ),
-                              onTap: ()  {
-                              }),
+                              // GestureDetector(
+                              // child: Image.asset(
+                              //   "assets/images/google.png",
+                              //   width: 206,
+                              // ),
+                              // onTap: ()  {
+                              // }),
                               const SizedBox(
                                 height: 20,
                               ),
@@ -232,7 +234,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: Text(
                                   "Sign up",
                                   style: TextStyle(
-                                      color: Theme.of(context).primaryColor,
+                                      color: Colors.black,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 15),
                                 ),
