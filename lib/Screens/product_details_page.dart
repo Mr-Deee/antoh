@@ -26,7 +26,7 @@ class ProductDetailsPage extends StatelessWidget {
         child: FloatingActionButton(
           onPressed: () {
             _firestore
-                .collection("products")
+                .collection("Estates")
                 .doc(docID)
                 .update(product!.toMap())
                 .then((value) {
@@ -240,7 +240,7 @@ class ProductDetailsPage extends StatelessWidget {
                                                       : product!.cost.toString(),
                                                   onChanged: (value) {
                                                     product!.cost =
-                                                        double.parse(value);
+                                                      value;
                                                   },
                                                   textInputAction:
                                                       TextInputAction.next,

@@ -177,7 +177,7 @@ class ProductCard extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: Text(
-                        "${Product!.quantity ?? '-'}\nAvailable",
+                        "${Product!.quantity ?? '-'}\nRooms Available",
                         style: const TextStyle(
                           fontFamily: "Nunito",
                           fontSize: 12,

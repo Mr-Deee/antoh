@@ -11,7 +11,7 @@ class addedProduct {
   });
 
   String? name;
-  double? cost;
+  String? cost;
   String? group;
   String? location;
   String? company;
@@ -21,7 +21,7 @@ class addedProduct {
 
   factory addedProduct.fromMap(Map<String, dynamic> json) => addedProduct(
     name: json["name"] as String?,
-    cost: json["cost"] as double?,
+    cost: json["cost"] as String?,
     group: json["group"] as String?,
     location: json["location"] as String?,
     company: json["company"] as String?,

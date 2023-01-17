@@ -62,8 +62,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Real Estate',
         theme: genetalTheme,
-        home: HomePage(),
-
+        // home: HomePage(),
+          debugShowCheckedModeBanner: false,
 
 
           initialRoute: FirebaseAuth.instance.currentUser == null

@@ -98,7 +98,7 @@ class _addproductState extends State<addproduct> {
              Occupationdb();
             newProduct.group = group;
             _firestore
-                .collection("products")
+                .collection("Estates")
                 .add({
 
               'image': url.toString(),
@@ -274,8 +274,8 @@ class _addproductState extends State<addproduct> {
                                                           : newProduct.cost
                                                               .toString(),
                                                   onChanged: (value) {
-                                                    newProduct.cost =
-                                                        double.parse(value);
+                                                    newProduct.cost = value;
+                                                    //    double.parse(value);
                                                   },
                                                   textInputAction:
                                                       TextInputAction.next,
@@ -709,7 +709,7 @@ class _addproductState extends State<addproduct> {
   Occupationdb() async {
     String url = await  uploadsFile();
     Map userDataMap = {
-      'Product': url.toString(),
+      'Estate': url.toString(),
       'name': newProduct.name.toString(),
       'description': newProduct.description.toString(),
       'group': newProduct.group.toString(),
@@ -719,7 +719,7 @@ class _addproductState extends State<addproduct> {
       'quantity': newProduct.quantity.toString(),
     };
 
-    EstateList.child("Product").set(userDataMap);
+    EstateList.child("Estates").set(userDataMap);
   }
 
 

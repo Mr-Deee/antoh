@@ -33,8 +33,8 @@ class ProductGroupPage extends StatelessWidget {
               ),
             );
           },
-          splashColor: ColorPalette.bondyBlue,
-          backgroundColor: ColorPalette.pacificBlue,
+          splashColor: Colors.black,
+          backgroundColor: Colors.black,
           child: const Icon(
             Icons.add,
             color: ColorPalette.white,
@@ -42,7 +42,7 @@ class ProductGroupPage extends StatelessWidget {
         ),
       ),
       body: Container(
-        color: ColorPalette.pacificBlue,
+        color: Colors.black,
         child: SafeArea(
           child: Container(
             color: ColorPalette.aquaHaze,
@@ -59,7 +59,7 @@ class ProductGroupPage extends StatelessWidget {
                   width: double.infinity,
                   height: 90,
                   decoration: const BoxDecoration(
-                    color: ColorPalette.pacificBlue,
+                    color:  Colors.black,
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(16),
                       bottomRight: Radius.circular(16),
@@ -74,6 +74,7 @@ class ProductGroupPage extends StatelessWidget {
                             icon: const Icon(
                               Icons.chevron_left_rounded,
                               size: 35,
+                              color:  Colors.white,
                             ),
                             onPressed: () {
                               Navigator.of(context).pop();
@@ -86,7 +87,7 @@ class ProductGroupPage extends StatelessWidget {
                             style: const TextStyle(
                               fontFamily: "Nunito",
                               fontSize: 28,
-                              color: ColorPalette.timberGreen,
+                              color: ColorPalette.white,
                             ),
                           ),
                         ],
@@ -97,7 +98,7 @@ class ProductGroupPage extends StatelessWidget {
                             splashColor: ColorPalette.timberGreen,
                             icon: const Icon(
                               Icons.search,
-                              color: ColorPalette.timberGreen,
+                              color: ColorPalette.white,
                             ),
                             onPressed: () {
                               // Navigator.of(context).push(
@@ -113,7 +114,7 @@ class ProductGroupPage extends StatelessWidget {
                           IconButton(
                             icon: const Icon(
                               Icons.delete,
-                              color: ColorPalette.timberGreen,
+                              color: ColorPalette.white,
                             ),
                             onPressed: () {
                               //TODO
@@ -139,7 +140,7 @@ class ProductGroupPage extends StatelessWidget {
                             ],
                           ),
                           const Text(
-                            "Products",
+                            "Estates",
                             style: TextStyle(
                               color: ColorPalette.timberGreen,
                               fontSize: 20,
@@ -150,7 +151,7 @@ class ProductGroupPage extends StatelessWidget {
                           Expanded(
                             child: StreamBuilder(
                               stream: _firestore
-                                  .collection("products")
+                                  .collection("Estates")
                                   .where("group", isEqualTo: name)
 
                                   .snapshots(),
