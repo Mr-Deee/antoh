@@ -45,11 +45,11 @@ class _addproductState extends State<addproduct> {
   @override
   Widget build(BuildContext context) {
 
-    var firstname = Provider
-        .of<Users>(context)
-        .userInfo
-        ?.id!;
-var newprojectname=  newProduct.name;
+//     var firstname = Provider
+//         .of<Users>(context)
+//         .userInfo
+//         ?.id!;
+// var newprojectname=  newProduct.name;
 
 
 
@@ -61,13 +61,14 @@ var newprojectname=  newProduct.name;
 
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         automaticallyImplyLeading: true,
         foregroundColor:  Color(0xff202020),
-        backgroundColor: Color(0xffE99E22),
+        backgroundColor: Colors.white,
         title: Row(
           children: [
             const Text(
-              "New Product",
+              "New Estate",
               style: TextStyle(
                 fontFamily: "Nunito",
                 fontSize: 28,
@@ -89,7 +90,7 @@ var newprojectname=  newProduct.name;
                  barrierDismissible: false,
                  builder: (BuildContext context) {
                    return ProgressDialog(
-                     message: "Adding New Product,Please wait.....",
+                     message: "Adding New Estate,Please wait.....",
                    );
                  });
              String url = await  uploadsFile();
@@ -119,7 +120,7 @@ var newprojectname=  newProduct.name;
             // Navigator.of(context).pop();
            },
           splashColor: ColorPalette.bondyBlue,
-          backgroundColor: Color(0xffE99E22),
+          backgroundColor: Colors.white,
           child: const Icon(
             Icons.done,
             color:  Color.fromRGBO(216, 78, 16, 1),
@@ -184,7 +185,7 @@ var newprojectname=  newProduct.name;
                                                 padding: const EdgeInsets.only(
                                                   left: 8, bottom: 12,),
                                                 child: Text(
-                                                  "Product Group : $group",
+                                                  "Estate Type  : $group",
                                                   style: const TextStyle(
                                                     fontFamily: "Nunito",
                                                     fontSize: 17,
@@ -229,7 +230,7 @@ var newprojectname=  newProduct.name;
                                             ),
                                             decoration: InputDecoration(
                                               border: InputBorder.none,
-                                              hintText: "Product Name",
+                                              hintText: "Estate Name",
                                               filled: true,
                                               fillColor: Colors.transparent,
                                               hintStyle: TextStyle(
@@ -351,7 +352,7 @@ var newprojectname=  newProduct.name;
                                                   ),
                                                   decoration: InputDecoration(
                                                     border: InputBorder.none,
-                                                    hintText: "Quantity",
+                                                    hintText: "Room N0.",
                                                     filled: true,
                                                     fillColor:
                                                         Colors.transparent,
@@ -469,18 +470,64 @@ var newprojectname=  newProduct.name;
                                           ),
                                         ),
                                         const SizedBox(height: 20),
-                                        const Padding(
+                                         Padding(
                                           padding: EdgeInsets.only(
                                             left: 8,
                                             bottom: 5,
                                           ),
-                                          child: Text(
-                                            "Location",
-                                            style: TextStyle(
-                                              fontFamily: "Nunito",
-                                              fontSize: 14,
-                                              color: ColorPalette.nileBlue,
-                                            ),
+                                          child: Column(
+                                            children: [
+
+
+                                              Container(
+
+
+                                                  decoration: BoxDecoration(
+                                                    color: ColorPalette.white,
+                                                    borderRadius:
+                                                    BorderRadius.circular(12),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        offset: const Offset(0, 3),
+                                                        blurRadius: 6,
+                                                        color: ColorPalette.nileBlue
+                                                            .withOpacity(0.1),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  height: 50,
+                                                child: TextFormField(
+                                                  initialValue:
+                                                  newProduct.location ?? '',
+                                                  onChanged: (value) {
+                                                    newProduct.location = value;
+                                                  },
+                                                  textInputAction:
+                                                  TextInputAction.next,
+                                                  key: UniqueKey(),
+                                                  keyboardType: TextInputType.text,
+                                                  style: const TextStyle(
+                                                    fontFamily: "Nunito",
+                                                    fontSize: 16,
+                                                    color: ColorPalette.nileBlue,
+                                                  ),
+                                                  decoration: InputDecoration(
+                                                    border: InputBorder.none,
+                                                    hintText: "Location/Digital Address",
+                                                    filled: true,
+                                                    fillColor: Colors.transparent,
+                                                    hintStyle: TextStyle(
+                                                      fontFamily: "Nunito",
+                                                      fontSize: 16,
+                                                      color: ColorPalette.nileBlue
+                                                          .withOpacity(0.58),
+                                                    ),
+                                                  ),
+                                                  cursorColor:
+                                                  ColorPalette.timberGreen,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                         //LocationDD(product: newProduct),

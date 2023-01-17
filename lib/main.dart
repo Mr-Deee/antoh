@@ -8,6 +8,7 @@ import 'package:antoh/Models/appConstants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'MODEL/Users.dart';
 import 'Screens/homepage.dart';
 
 
@@ -43,6 +44,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+
+
+    ChangeNotifierProvider<Users>(
+    create: (context) => Users(),),
         ChangeNotifierProvider(
           create: (_) => UserProvider(),
         ),
