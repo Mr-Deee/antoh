@@ -226,8 +226,8 @@ class _adminState extends State<admin> {
                                                         try {
                                                           final DocumentSnapshot<Map<String, dynamic>>
                                                           _doc = await _firestore
-                                                              .collection("utils")
-                                                              .doc("productGroups")
+                                                              .collection("Utiles")
+                                                              .doc("EstateCategories ")
                                                               .get();
                                                           final List<dynamic> _tempList =
                                                           _doc.data()!['list'] as List<dynamic>;
@@ -236,8 +236,8 @@ class _adminState extends State<admin> {
                                                           } else {
                                                             _tempList.add(_newProductGroup.text);
                                                             _firestore
-                                                                .collection('utils')
-                                                                .doc("productGroups")
+                                                                .collection('Utiles')
+                                                                .doc("EstateCategories ")
                                                                 .update({'list': _tempList});
                                                             displayToast("Added Successfully",context,);
                                                           }
@@ -308,7 +308,7 @@ class _adminState extends State<admin> {
                 Expanded(
                   child: StreamBuilder(
                     stream:
-                    _firestore.collection("Estates").snapshots(),
+                    _firestore.collection("Utiles").snapshots(),
                     builder: (
                         BuildContext context,
                         AsyncSnapshot<
