@@ -317,7 +317,7 @@ class _adminState extends State<admin> {
                         ) {
                       if (snapshot.hasData) {
                         final List<dynamic> _productGroups =
-                        snapshot.data!.docs[0].data()['list']
+                        snapshot.data!.docs[0].data()['List']
                         as List<dynamic>;
                         _productGroups.sort();
                         return GridView.builder(

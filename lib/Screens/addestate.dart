@@ -113,6 +113,8 @@ class _addproductState extends State<addproduct> {
                })
                 .then((value) {
               Navigator.of(context).pop();
+              Navigator.of(context).pop();
+
               showTextToast('Added Sucessfully!');
             }).catchError((e) {
               showTextToast('Failed!');
