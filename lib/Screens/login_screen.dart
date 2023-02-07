@@ -5,11 +5,17 @@ import 'package:antoh/provider/UserProvider.dart';
 import 'package:antoh/screens/homepage.dart';
 import 'package:antoh/screens/registration_screen.dart';
 import 'package:antoh/utils/InputValidator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import '../widget/progressDialog.dart';
+
 
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
+TextEditingController emailTextEditingController = TextEditingController();
+TextEditingController passwordTextEditingController = TextEditingController();
 
 class _LoginScreenState extends State<LoginScreen> {
   @override
@@ -69,6 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final userProvider = Provider.of<UserProvider>(context);
     //email field
     final emailField = TextFormField(
+        controller: emailTextEditingController,
         autofocus: false,
         keyboardType: TextInputType.emailAddress,
         validator: InputValidator.email,
@@ -92,6 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 OutlineInputBorder(borderRadius: BorderRadius.circular(10))));
 
     final passwordField = TextFormField(
+      controller: passwordTextEditingController,
       //password field
       autofocus: false,
       validator: InputValidator.password,
@@ -135,7 +143,8 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
         onPressed: () {
-          _submitForm(userProvider.Login);
+          // _submitForm(userProvider.Login);
+          loginAndAuthenticateUser(context);
         },
         child: const Text(
           "Sign In",
@@ -249,5 +258,65 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  void loginAndAuthenticateUser(BuildContext context) async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return ProgressDialog(
+            message: "Logging you ,Please wait.",
+          );
+        });
+
+    final User? firebaseUser = (await _firebaseAuth
+        .signInWithEmailAndPassword(
+      email: emailTextEditingController.text.toString().trim(),
+      password: passwordTextEditingController.text.toString().trim(),
+    )
+        .catchError((errMsg) {
+      Navigator.pop(context);
+      displayToast("Error" + errMsg.toString(), context);
+    }))
+        .user;
+    try {
+      UserCredential userCredential =
+      await _firebaseAuth.signInWithEmailAndPassword(
+          email: emailTextEditingController.text,
+          password: passwordTextEditingController.text);
+
+      if (emailTextEditingController.text == "anthorkim@gmail.com") {
+        Navigator.of(context).pushNamed("/admin");
+      } else if (firebaseUser != null) {
+        Navigator.of(context).pushNamed("/Homepage");
+
+        displayToast("Logged-in ", context);
+      } else {
+        displayToast("Error: Cannot be signed in", context);
+      }
+
+      //final User? firebaseUser = userCredential.user;
+      // if (firebaseUser != null) {
+      //   final DatabaseEvent event = await
+      //   //Admin.child(firebaseUser.uid).once();
+      //   BoardMembers.child(firebaseUser.uid).once();
+      //   // if (event.snapshot.value !=Admin) {
+      //   //   Navigator.pushNamedAndRemoveUntil(context, MainScreen.idScreen,
+      //   //           (route) => false);
+      //   //   displayToast("Logged-in As Admin", context);
+      //   // }
+      //   if(event.snapshot.value !=BoardMembers){
+      //     Navigator.pushNamedAndRemoveUntil(context, VotersScreen.idScreen,
+      //             (route) => false);
+      //     displayToast("Logged-in As Board Member",
+      //         context);
+      //    // await _firebaseAuth.signOut();
+      //   }
+
+    } catch (e) {
+      // handle error
+    }
   }
 }
