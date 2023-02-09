@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+import 'package:antoh/Screens/propertydetails.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:antoh/Screens/admin.dart';
 import 'package:provider/provider.dart';
@@ -18,9 +19,9 @@ class HomePage extends StatefulWidget {
   static const routeName = 'real_estate';
   static const themeColor = Colors.black;
   //Color(0xFFA95AEA);
-  const HomePage({Key? key}) : super(key: key);
+   HomePage({Key? key}) : super(key: key);
 
-
+  final addedProduct newProduct = addedProduct();
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -28,7 +29,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
    String? name;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
+   final addedProduct newProduct = addedProduct();
   @override
   void initState() {
     super.initState();
@@ -92,23 +93,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 20,
               ),
-              ElevatedButton(
-                onPressed: () {
 
-                  Navigator.push(context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              admin()));
-                },
-                child: Text(
-                  "RENT",
-                  style: TextStyle(color: Colors.grey[500]),
-                ),
-                // color: Colors.yellow[300],
-                // shape: RoundedRectangleBorder(
-                //   borderRadius: BorderRadius.circular(18.0),
-                // ),
-              ),
               SizedBox(
                 height: 20,
               ),
@@ -488,6 +473,7 @@ var searchBar = Container(
 // );
 
 class CategoryWidget extends StatelessWidget {
+  final addedProduct newProduct = addedProduct();
   final Category category;
 
   CategoryWidget(this.category);
@@ -496,35 +482,27 @@ class CategoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Padding(
-          padding: EdgeInsets.only(right: 10),
-          child: Container(
-              width: 100.0,
-              height: 120.0,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    fit: BoxFit.cover, image: AssetImage(category.image)),
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-              )),
-        ),
-
-        ElevatedButton(
-          onPressed: () {
-
-            Navigator.push(context,
+        GestureDetector(
+          onTap: (){
+            Navigator.push(
+                context,
                 MaterialPageRoute(
                     builder: (context) =>
-                        admin()));
+                        propertydetails()));
           },
-          child: Text(
-            "RENT",
-            style: TextStyle(color: Colors.grey[500]),
+          child: Padding(
+            padding: EdgeInsets.only(right: 10),
+            child: Container(
+                width: 100.0,
+                height: 120.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      fit: BoxFit.cover, image: AssetImage(category.image)),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                )),
           ),
-          // color: Colors.yellow[300],
-          // shape: RoundedRectangleBorder(
-          //   borderRadius: BorderRadius.circular(18.0),
-          // ),
         ),
+
         Positioned(
           left: 10,
           bottom: 10,
@@ -547,7 +525,10 @@ class NearbyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+
+
+      },
       child: Hero(
         tag: image,
         child: Padding(
