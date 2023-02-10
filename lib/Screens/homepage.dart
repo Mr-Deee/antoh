@@ -11,6 +11,7 @@ import 'package:antoh/screens/search.dart';
 import 'package:flutter/material.dart';
 
 import '../data/data_home.dart';
+import 'package:antoh/widget/estate_card.dart';
 import '../widget/product_card.dart';
 
 class HomePage extends StatefulWidget {
@@ -236,7 +237,7 @@ class _HomePageState extends State<HomePage> {
                             itemCount: snapshot.data!.docs.length,
                             itemBuilder:
                                 (BuildContext context, int index) {
-                              return ProductCard(
+                              return EstateCard(
                                 Product: addedProduct.fromMap( snapshot.data!.docs[index].data(),),
                                 docID: snapshot.data!.docs[index].id,
                               );
