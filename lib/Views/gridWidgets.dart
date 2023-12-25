@@ -1,20 +1,20 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:crib_hunter/Models/appConstants.dart';
-import 'package:crib_hunter/Models/postingObjects.dart';
+import 'package:antoh/Models/appConstants.dart';
+import 'package:antoh/Models/postingObjects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating/flutter_rating.dart';
 
 class PostingGridTile extends StatefulWidget {
-  final Posting posting;
+  final Posting ?posting;
 
-  PostingGridTile({this.posting, Key key}) : super(key: key);
+  PostingGridTile({this.posting, Key? key}) : super(key: key);
 
   @override
   _PostingGridTileState createState() => _PostingGridTileState();
 }
 
 class _PostingGridTileState extends State<PostingGridTile> {
-  Posting _posting;
+  Posting ?_posting;
 
   @override
   void initState() {
@@ -33,26 +33,26 @@ class _PostingGridTileState extends State<PostingGridTile> {
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: this._posting.displayImages.first,
+                image: this._posting!.displayImages!.first,
                 fit: BoxFit.fill,
               ),
             ),
           ),
         ),
         AutoSizeText(
-          "${_posting.type} - ${_posting.city}, ${_posting.country}",
+          "${_posting?.type} - ${_posting?.city}, ${_posting?.country}",
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 16.0,
           ),
         ),
         AutoSizeText(
-          _posting.name,
+          _posting?.name,
           style: TextStyle(
             fontSize: 14.0,
           ),
         ),
-        Text('\$${_posting.price} / night'),
+        Text('\$${_posting!.price} / night'),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -62,7 +62,7 @@ class _PostingGridTileState extends State<PostingGridTile> {
               color: AppConstants.selectedIconColor,
               borderColor: Colors.grey,
               onRatingChanged: null,
-              rating: _posting.getCurrentRating(),
+              rating: _posting?.getCurrentRating(),
             ),
           ],
         ),
@@ -72,16 +72,16 @@ class _PostingGridTileState extends State<PostingGridTile> {
 }
 
 class TripGridTile extends StatefulWidget {
-  final Booking booking;
+  final Booking ?booking;
 
-  TripGridTile({this.booking, Key key}) : super(key: key);
+  TripGridTile({this.booking, Key? key}) : super(key: key);
 
   @override
   _TripGridTileState createState() => _TripGridTileState();
 }
 
 class _TripGridTileState extends State<TripGridTile> {
-  Booking _booking;
+  Booking? _booking;
 
   @override
   void initState() {
@@ -100,34 +100,34 @@ class _TripGridTileState extends State<TripGridTile> {
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: _booking.posting.displayImages.first,
+                image: _booking!.posting!.displayImages!.first,
                 fit: BoxFit.fill,
               ),
             ),
           ),
         ),
         AutoSizeText(
-          _booking.posting.name,
+          _booking!.posting!.name!,
           style: TextStyle(
             fontSize: 17.0,
             fontWeight: FontWeight.bold,
           ),
         ),
         AutoSizeText(
-          '${_booking.posting.city} ${_booking.posting.country}',
+          '${_booking!.posting!.city} ${_booking!.posting!.country}',
           style: TextStyle(
             fontSize: 16.0,
           ),
         ),
-        Text('\$${_booking.posting.price} / night'),
+        Text('\$${_booking!.posting!.price} / night'),
         Text(
-          '${_booking.getFirstDate()} -',
+          '${_booking!.getFirstDate()} -',
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
         Text(
-          '${_booking.getLastDate()}',
+          '${_booking!.getLastDate()}',
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),

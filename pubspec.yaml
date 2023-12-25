@@ -42,7 +42,8 @@ dev_dependencies:
     sdk: flutter
 
 
-
+  auto_size_text: ^2.1.0
+  flutter_rating: ^0.0.2
   geolocator: ^5.2.1
   firebase_core: ^0.4.0+1
   firebase_auth: ^0.16.1

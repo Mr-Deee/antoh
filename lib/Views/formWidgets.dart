@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating/flutter_rating.dart';
 
 class ReviewForm extends StatefulWidget {
-  ReviewForm({Key key}) : super(key: key);
+  ReviewForm({Key? key}) : super(key: key);
 
   @override
   _ReviewFormState createState() => _ReviewFormState();
@@ -15,7 +15,7 @@ class _ReviewFormState extends State<ReviewForm> {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.grey[900],
+          color: Colors.grey[900]!,
           width: 2.0,
         ),
         borderRadius: BorderRadius.circular(10.0),
